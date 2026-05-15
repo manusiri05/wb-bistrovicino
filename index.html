@@ -82,7 +82,7 @@
     .hero{position:relative;min-height:88vh;display:flex;align-items:center;
       overflow:hidden;background:var(--bg-soft)}
     .hero .bg{position:absolute;inset:0;z-index:0}
-    .hero .bg .ph{width:100%;height:100%}
+    .hero .bg img{width:100%;height:100%;object-fit:cover;display:block}
     .hero .bg::after{content:"";position:absolute;inset:0;
       background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.55) 100%),
                  linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 40%)}
@@ -95,31 +95,13 @@
     .hero .meta a:hover{color:rgba(255,255,255,.7)}
     .hero .meta .sep{color:rgba(255,255,255,.4)}
 
-    /* ─── Photo placeholder ─── */
-    .ph{background:linear-gradient(135deg,#d3cec0 0%,#b8b2a1 100%);
-      display:grid;place-items:center;color:rgba(20,19,15,.45);position:relative;overflow:hidden}
-    .ph::before{content:"";position:absolute;inset:0;
-      background-image:radial-gradient(circle at 30% 20%,rgba(255,255,255,.4) 0%,transparent 50%),
-                       radial-gradient(circle at 70% 80%,rgba(0,0,0,.1) 0%,transparent 50%)}
-    .ph .ph-label{position:relative;padding:4px 14px;background:rgba(255,255,255,.5);
-      border-radius:999px;font-size:14px;color:rgba(20,19,15,.7)}
-    .ph.tone-1{background:linear-gradient(135deg,#e8dfc8 0%,#c9b894 100%)}
-    .ph.tone-2{background:linear-gradient(135deg,#d6ccb4 0%,#a08c64 100%)}
-    .ph.tone-3{background:linear-gradient(135deg,#b89d72 0%,#6e5535 100%);color:rgba(255,255,255,.55)}
-    .ph.tone-3 .ph-label{background:rgba(0,0,0,.3);color:rgba(255,255,255,.7)}
-    .ph.dark{background:linear-gradient(180deg,#4a3a2a 0%,#2c241a 100%);color:rgba(255,255,255,.4)}
-    .ph.dark::before{background-image:
-      radial-gradient(circle at 30% 30%,rgba(255,180,120,.18) 0%,transparent 55%),
-      radial-gradient(circle at 70% 70%,rgba(0,0,0,.3) 0%,transparent 55%)}
-    .ph.dark .ph-label{background:rgba(0,0,0,.4);color:rgba(255,255,255,.6)}
-
     /* ─── Editorial sections ─── */
     section.edit{padding:120px 0;border-bottom:1px solid var(--line)}
     section.edit .container{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
     section.edit.reverse .container > .text{order:2}
     section.edit.reverse .container > .image{order:1}
     section.edit .text{max-width:540px}
-    section.edit .image .ph{aspect-ratio:4/5;border-radius:2px}
+    section.edit .image img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block}
     section.edit .text .kicker{display:block;margin-bottom:18px}
     section.edit .text .section-title{margin-bottom:22px}
     section.edit .text .lead{margin-bottom:26px}
@@ -243,7 +225,7 @@
       section.info .head,section.location .container{grid-template-columns:1fr;gap:40px}
       section.edit.reverse .container > .text{order:1}
       section.edit.reverse .container > .image{order:2}
-      section.edit .image .ph{aspect-ratio:4/3}
+      section.edit .image img{aspect-ratio:4/3}
       .menu-list{grid-template-columns:1fr}
       section.info .grid{grid-template-columns:1fr 1fr}
       section.location .map{min-height:320px}
@@ -285,12 +267,11 @@
 <!-- ─────────────────────────  HERO  ───────────────────────── -->
 <section class="hero">
   <div class="bg">
-    <div class="ph dark">
-      <span class="ph-label">
-        <span lang="de">Foto · Theke &amp; Pinsa-Ofen</span>
-        <span lang="it">Foto · Banco &amp; forno per pinsa</span>
-      </span>
-    </div>
+    <img
+      src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1800&q=85&fit=crop&crop=center"
+      alt="Bistro Vicino – Theke und Atmosphäre"
+      loading="eager"
+    >
   </div>
   <div class="content">
     <span class="kicker">
@@ -355,12 +336,11 @@
       </div>
     </div>
     <div class="image">
-      <div class="ph tone-1">
-        <span class="ph-label">
-          <span lang="de">Foto · Cappuccino &amp; Cornetto</span>
-          <span lang="it">Foto · Cappuccino &amp; cornetto</span>
-        </span>
-      </div>
+      <img
+        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=900&q=85&fit=crop&crop=center"
+        alt="Cappuccino und Cornetto beim Bistro Vicino"
+        loading="lazy"
+      >
     </div>
   </div>
 </section>
@@ -386,7 +366,7 @@
           <span lang="de">Alle Panini ↓</span><span lang="it">Tutti i panini ↓</span>
         </a>
         <span class="sep">·</span>
-        <a href="tel:+390471000000" class="link-arrow">
+        <a href="tel:+393762800929" class="link-arrow">
           <span lang="de">Vorbestellung ↗</span><span lang="it">Preordina ↗</span>
         </a>
       </div>
@@ -412,12 +392,11 @@
       </div>
     </div>
     <div class="image">
-      <div class="ph tone-2">
-        <span class="ph-label">
-          <span lang="de">Foto · Panini Caprese</span>
-          <span lang="it">Foto · Panino caprese</span>
-        </span>
-      </div>
+      <img
+        src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=900&q=85&fit=crop&crop=center"
+        alt="Frisch belegtes Panino beim Bistro Vicino"
+        loading="lazy"
+      >
     </div>
   </div>
 </section>
@@ -469,12 +448,11 @@
       </div>
     </div>
     <div class="image">
-      <div class="ph tone-3">
-        <span class="ph-label">
-          <span lang="de">Foto · Pinsa Margherita</span>
-          <span lang="it">Foto · Pinsa margherita</span>
-        </span>
-      </div>
+      <img
+        src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=85&fit=crop&crop=center"
+        alt="Pinsa romana frisch aus dem Ofen"
+        loading="lazy"
+      >
     </div>
   </div>
 </section>
@@ -871,8 +849,8 @@
           <span lang="de">Auf Google Maps öffnen ↗</span>
           <span lang="it">Apri in Google Maps ↗</span>
         </a>
-        <a class="link-arrow" href="tel:+390471000000">+39 0471 00 00 00</a>
-        <a class="link-arrow" href="/cdn-cgi/l/email-protection#5831363e37183a312b2c2a372e313b31363776312c"><span class="__cf_email__" data-cfemail="c0a9aea6af80a2a9b3b4b2afb6a9a3a9aeafeea9b4">[email&#160;protected]</span></a>
+        <a class="link-arrow" href="tel:+393762800929">+39 376 280 0929</a>
+        <a class="link-arrow" href="mailto:info@rafenstein.it">info@rafenstein.it</a>
       </div>
     </div>
 
@@ -961,7 +939,7 @@
       <span lang="it">Ci siamo, lun–ven, dalle 7 alle 19. Telefoni se va di fretta — prepariamo tutto.</span>
     </p>
     <div class="links">
-      <a class="link-arrow" href="tel:+390471000000">
+      <a class="link-arrow" href="tel:+393762800929">
         <span lang="de">Anrufen ↗</span><span lang="it">Telefono ↗</span>
       </a>
       <span class="sep">·</span>
@@ -969,7 +947,7 @@
         <span lang="de">Anfahrt ↗</span><span lang="it">Indicazioni ↗</span>
       </a>
       <span class="sep">·</span>
-      <a class="link-arrow" href="#">Instagram ↗</a>
+      <a class="link-arrow" href="https://www.instagram.com/bistrovicino" target="_blank" rel="noopener">Instagram ↗</a>
     </div>
   </div>
 </section>
@@ -1007,23 +985,23 @@
     <div>
       <h5><span lang="de">Kontakt</span><span lang="it">Contatti</span></h5>
       <ul>
-        <li><a href="tel:+390471000000">+39 0471 00 00 00</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#1e777078715e7c776d6a6c7168777d77707130776a"><span class="__cf_email__" data-cfemail="91f8fff7fed1f3f8e2e5e3fee7f8f2f8fffebff8e5">[email&#160;protected]</span></a></li>
-        <li><a href="#">Instagram · @bistrovicino</a></li>
+        <li><a href="tel:+393762800929">+39 376 280 0929</a></li>
+        <li><a href="mailto:info@rafenstein.it">info@rafenstein.it</a></li>
+        <li><a href="https://www.instagram.com/bistrovicino" target="_blank" rel="noopener">Instagram · @bistrovicino</a></li>
       </ul>
     </div>
     <div class="legal">
-      <span>© 2026 Bistro Vicino</span>
+      <span>© 2026 Bistro Vicino · Jo Klebe GmbH</span>
       <span>
-        <a href="#"><span lang="de">Impressum</span><span lang="it">Note legali</span></a>
-        <a href="#"><span lang="de">Datenschutz</span><span lang="it">Privacy</span></a>
+        <a href="impressum.html"><span lang="de">Impressum</span><span lang="it">Note legali</span></a>
+        <a href="datenschutz.html"><span lang="de">Datenschutz</span><span lang="it">Privacy</span></a>
       </span>
     </div>
   </div>
 </footer>
 
 <!-- ─────────────────────────  SCRIPT  ───────────────────────── -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ─── Language toggle ───
   const langButtons = document.querySelectorAll('.lang-toggle button');
   function setLang(lang){
