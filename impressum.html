@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum — Bistro Vicino</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f5f3ee;
+      --ink: #14130f;
+      --muted: #75726a;
+      --rule: #d9d6cf;
+      --accent: #b89b6e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo em {
+      font-style: italic;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--ink); }
+
+    .nav-back::before {
+      content: '←';
+      font-size: 15px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 96px 48px 72px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+
+    .hero h1 em { font-style: italic; }
+
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin-top: 36px;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+    }
+
+    .section {
+      margin-top: 64px;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 12px 24px;
+    }
+
+    .info-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .info-value a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--rule);
+      transition: text-decoration-color 0.2s;
+    }
+
+    .info-value a:hover {
+      text-decoration-color: var(--ink);
+    }
+
+    .info-row {
+      display: contents;
+    }
+
+    .info-divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      background: var(--rule);
+      margin: 4px 0;
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* ── AGENCY CARD ── */
+    .agency-card {
+      margin-top: 12px;
+      padding: 32px 36px;
+      background: #eeecea;
+      border-radius: 4px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .agency-name {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.2px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .agency-tagline {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .agency-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .agency-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .agency-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--ink); }
+    .footer-links a.active { color: var(--ink); }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 60px 24px 48px; }
+      .content { padding: 0 24px 80px; }
+      .info-grid { grid-template-columns: 1fr; gap: 4px 0; }
+      .info-label { margin-top: 16px; }
+      .info-divider { display: none; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Bistro <em>Vicino</em></a>
+    <a href="index.html" class="nav-back">Zurück zur Website</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-label">Rechtliche Hinweise</p>
+    <h1>Impres<em>sum</em></h1>
+    <div class="hero-rule"></div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- Betreiber -->
+    <section class="section">
+      <h2 class="section-title">Betreiber &amp; Verantwortlicher</h2>
+      <div class="info-grid">
+
+        <div class="info-row">
+          <span class="info-label">Gesellschaft</span>
+          <span class="info-value">Jo Klebe GmbH</span>
+        </div>
+        <div class="info-divider"></div>
+
+        <div class="info-row">
+          <span class="info-label">Adresse</span>
+          <span class="info-value">Via Perathoner 17<br>39100 Bozen (BZ), Italien</span>
+        </div>
+        <div class="info-divider"></div>
+
+        <div class="info-row">
+          <span class="info-label">MwSt-Nr. / P.IVA</span>
+          <span class="info-value">02401430216</span>
+        </div>
+        <div class="info-divider"></div>
+
+        <div class="info-row">
+          <span class="info-label">SDI-Code</span>
+          <span class="info-value">USAL8PV</span>
+        </div>
+        <div class="info-divider"></div>
+
+        <div class="info-row">
+          <span class="info-label">PEC</span>
+          <span class="info-value"><a href="mailto:finlohg@legalmail.it">finlohg@legalmail.it</a></span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section class="section">
+      <h2 class="section-title">Kontakt</h2>
+      <div class="info-grid">
+
+        <div class="info-row">
+          <span class="info-label">Telefon</span>
+          <span class="info-value"><a href="tel:+393762800929">+39 376 280 0929</a></span>
+        </div>
+        <div class="info-divider"></div>
+
+        <div class="info-row">
+          <span class="info-label">E-Mail</span>
+          <span class="info-value"><a href="mailto:info@rafenstein.it">info@rafenstein.it</a></span>
+        </div>
+        <div class="info-divider"></div>
+
+        <div class="info-row">
+          <span class="info-label">Web</span>
+          <span class="info-value"><a href="https://rafenstein.it" target="_blank" rel="noopener">rafenstein.it</a></span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Haftungsausschluss -->
+    <section class="section">
+      <h2 class="section-title">Haftungsausschluss</h2>
+      <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+      <p>Alle Inhalte dieser Website — Texte, Bilder, Grafiken und sonstige Elemente — sind urheberrechtlich geschützt. Eine Vervielfältigung, Bearbeitung oder Verbreitung ohne ausdrückliche Genehmigung des Betreibers ist untersagt.</p>
+    </section>
+
+    <!-- Agentur -->
+    <section class="section">
+      <h2 class="section-title">Website &amp; Digitales Marketing</h2>
+      <p style="margin-bottom: 20px;">Konzept · Design · Marketing</p>
+      <div class="agency-card">
+        <p class="agency-name">Out of the Box Media</p>
+        <p class="agency-tagline">Werbeagentur für Hospitality &amp; Gastronomie</p>
+        <p class="agency-desc">Markenentwicklung, datengetriebenes Advertising, Conversion-Optimierung und Performance-Kampagnen. Trackingarchitektur, Zielgruppenanalyse und kreative Konzeption für Restaurants und Hotels.</p>
+        <a href="https://www.outofthebox-media.com/" target="_blank" rel="noopener" class="agency-link">
+          outofthebox-media.com ↗
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-left">© 2025 Jo Klebe GmbH · Bistro Vicino, Bozen</span>
+    <nav class="footer-links">
+      <a href="impressum.html" class="active">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </footer>
+
+</body>
+</html>

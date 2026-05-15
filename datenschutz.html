@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutz — Bistro Vicino</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f5f3ee;
+      --ink: #14130f;
+      --muted: #75726a;
+      --rule: #d9d6cf;
+      --accent: #b89b6e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo em { font-style: italic; }
+
+    .nav-back {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--ink); }
+    .nav-back::before { content: '←'; font-size: 15px; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 96px 48px 72px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+
+    .hero h1 em { font-style: italic; }
+
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin-top: 36px;
+    }
+
+    .hero-meta {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .toc-inner {
+      background: #eeecea;
+      border-radius: 4px;
+      padding: 28px 32px;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .toc-list a {
+      font-size: 14px;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .toc-list a:hover { color: var(--accent); }
+
+    .toc-num {
+      font-size: 11px;
+      color: var(--accent);
+      min-width: 20px;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+    }
+
+    .section {
+      margin-top: 72px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-num {
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    h3 {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    /* ── INFO TABLE ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 14px 24px;
+      margin-bottom: 24px;
+    }
+
+    .info-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .info-value {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .info-value a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--rule);
+      transition: text-decoration-color 0.2s;
+    }
+
+    .info-value a:hover { text-decoration-color: var(--ink); }
+
+    /* ── TOOL CARDS ── */
+    .tool-card {
+      margin-top: 24px;
+      padding: 28px 32px;
+      background: #eeecea;
+      border-radius: 4px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .tool-card + .tool-card { margin-top: 16px; }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tool-name {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .tool-badge {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 10px 20px;
+      margin-bottom: 16px;
+    }
+
+    .tool-key {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .tool-val {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .tool-val a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .tool-val a:hover { border-color: var(--accent); }
+
+    /* ── RIGHTS LIST ── */
+    .rights-list {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    .rights-list li {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .rights-list li:last-child { border-bottom: none; }
+
+    .rights-icon {
+      font-size: 16px;
+      min-width: 24px;
+      text-align: center;
+      padding-top: 1px;
+    }
+
+    .rights-list strong {
+      color: var(--ink);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ── COOKIE TABLE ── */
+    .cookie-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .cookie-table th {
+      text-align: left;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 16px 10px 0;
+      border-bottom: 1px solid var(--rule);
+      font-weight: 400;
+    }
+
+    .cookie-table td {
+      padding: 14px 16px 14px 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .cookie-table td:first-child {
+      color: var(--ink);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
+      margin-top: 24px;
+      padding: 28px 32px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left { font-size: 13px; color: var(--muted); }
+
+    .footer-links { display: flex; gap: 24px; }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--ink); }
+    .footer-links a.active { color: var(--ink); }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 60px 24px 48px; }
+      .toc { padding: 0 24px; }
+      .toc-list { grid-template-columns: 1fr; }
+      .content { padding: 0 24px 80px; }
+      .info-grid { grid-template-columns: 1fr; gap: 6px; }
+      .info-label { margin-top: 14px; }
+      .tool-grid { grid-template-columns: 1fr; gap: 6px; }
+      .tool-key { margin-top: 10px; }
+      .cookie-table { font-size: 13px; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Bistro <em>Vicino</em></a>
+    <a href="index.html" class="nav-back">Zurück zur Website</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-label">Rechtliche Hinweise</p>
+    <h1>Daten<em>schutz</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-meta">Letzte Aktualisierung: Mai 2025 &nbsp;·&nbsp; Gemäß DSGVO (EU) 2016/679</p>
+  </header>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-inner">
+      <p class="toc-title">Inhaltsverzeichnis</p>
+      <ol class="toc-list">
+        <li><a href="#verantwortlicher"><span class="toc-num">01</span>Verantwortlicher</a></li>
+        <li><a href="#grundsaetze"><span class="toc-num">02</span>Grundsätze</a></li>
+        <li><a href="#zwecke"><span class="toc-num">03</span>Verarbeitungszwecke &amp; Daten</a></li>
+        <li><a href="#tracking"><span class="toc-num">04</span>Tracking &amp; Analyse-Tools</a></li>
+        <li><a href="#cookies"><span class="toc-num">05</span>Cookies</a></li>
+        <li><a href="#drittlaender"><span class="toc-num">06</span>Datenübermittlung Drittländer</a></li>
+        <li><a href="#speicherdauer"><span class="toc-num">07</span>Speicherdauer</a></li>
+        <li><a href="#rechte"><span class="toc-num">08</span>Ihre Rechte</a></li>
+        <li><a href="#kontakt"><span class="toc-num">09</span>Kontakt &amp; Beschwerden</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- 01 Verantwortlicher -->
+    <section class="section" id="verantwortlicher">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Verantwortlicher</h2>
+      </div>
+      <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) für die Verarbeitung personenbezogener Daten auf dieser Website ist:</p>
+      <div class="info-grid" style="margin-top: 20px;">
+        <span class="info-label">Gesellschaft</span>
+        <span class="info-value">Jo Klebe GmbH</span>
+        <span class="info-label">Adresse</span>
+        <span class="info-value">Via Perathoner 17, 39100 Bozen (BZ), Italien</span>
+        <span class="info-label">P.IVA / MwSt-Nr.</span>
+        <span class="info-value">02401430216</span>
+        <span class="info-label">Telefon</span>
+        <span class="info-value"><a href="tel:+393762800929">+39 376 280 0929</a></span>
+        <span class="info-label">E-Mail</span>
+        <span class="info-value"><a href="mailto:info@rafenstein.it">info@rafenstein.it</a></span>
+      </div>
+    </section>
+
+    <!-- 02 Grundsätze -->
+    <section class="section" id="grundsaetze">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Grundsätze der Verarbeitung</h2>
+      </div>
+      <p>Wir verarbeiten personenbezogene Daten im Einklang mit der EU-Datenschutz-Grundverordnung (DSGVO) sowie den geltenden nationalen Datenschutzgesetzen. Wir erheben nur jene Daten, die für den jeweils angegebenen Zweck erforderlich sind (<strong>Datensparsamkeit</strong>), und speichern diese nicht länger als notwendig.</p>
+      <p>Rechtsgrundlagen der Verarbeitung sind je nach Kontext: <strong>Einwilligung</strong> (Art. 6 Abs. 1 lit. a DSGVO), <strong>berechtigte Interessen</strong> (Art. 6 Abs. 1 lit. f DSGVO) sowie <strong>vorvertragliche/vertragliche Maßnahmen</strong> (Art. 6 Abs. 1 lit. b DSGVO).</p>
+    </section>
+
+    <!-- 03 Zwecke -->
+    <section class="section" id="zwecke">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Verarbeitungszwecke &amp; erhobene Daten</h2>
+      </div>
+
+      <h3>Websiteaufruf &amp; Server-Logs</h3>
+      <p>Beim Besuch unserer Website übermittelt Ihr Browser automatisch technische Informationen an unseren Webserver: IP-Adresse, Datum/Uhrzeit, aufgerufene URL, übertragene Datenmenge, Browser-Typ sowie das verweisende Dokument (Referrer). Diese Daten werden ausschließlich zur Sicherstellung des technischen Betriebs und zur Fehleranalyse verarbeitet und nach spätestens 30 Tagen gelöscht.</p>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen).</p>
+
+      <h3>Kontaktaufnahme</h3>
+      <p>Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage. Daten werden nicht ohne Einwilligung an Dritte weitergegeben.</p>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) oder Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+      <h3>Reservierungen &amp; Anfragen</h3>
+      <p>Für die Bearbeitung von Tischreservierungen oder Veranstaltungsanfragen über Formulare oder verknüpfte Dienste (z. B. OpenTable, Resmio oder ähnliche) verarbeiten wir Name, Kontaktdaten, Personenanzahl und ggf. besondere Wünsche. Es gelten die Datenschutzbedingungen des jeweiligen Drittanbieters.</p>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO.</p>
+    </section>
+
+    <!-- 04 Tracking -->
+    <section class="section" id="tracking">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Tracking &amp; Analyse-Tools</h2>
+      </div>
+      <p>Wir setzen folgende Tracking- und Analyse-Dienste ein, um das Nutzerverhalten auf unserer Website zu verstehen, die Nutzererfahrung zu verbessern und unsere Marketingmaßnahmen zu optimieren. Diese Tools werden nur nach Ihrer Einwilligung (Cookie-Banner) aktiviert.</p>
+
+      <!-- Google Analytics 4 -->
+      <div class="tool-card">
+        <div class="tool-header">
+          <span class="tool-name">Google Analytics 4 (GA4)</span>
+          <span class="tool-badge">Analyse</span>
+        </div>
+        <div class="tool-grid">
+          <span class="tool-key">Anbieter</span>
+          <span class="tool-val">Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland</span>
+          <span class="tool-key">Muttergesellschaft</span>
+          <span class="tool-val">Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA</span>
+          <span class="tool-key">Zweck</span>
+          <span class="tool-val">Analyse des Website-Traffics, Seitenaufrufe, Verweildauer, Conversions und Nutzerströme; Optimierung der Nutzerführung</span>
+          <span class="tool-key">Erhobene Daten</span>
+          <span class="tool-val">Pseudonymisierte IP-Adresse (IP-Anonymisierung aktiv), Gerätedaten, Browser, Standort (Länderebene), Seitenaufrufe, Klicks, Verweildauer, Conversion-Events</span>
+          <span class="tool-key">Rechtsgrundlage</span>
+          <span class="tool-val">Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</span>
+          <span class="tool-key">Speicherdauer</span>
+          <span class="tool-val">14 Monate (konfigurierte Datenaufbewahrung); Cookies bis zu 2 Jahre</span>
+          <span class="tool-key">Drittland</span>
+          <span class="tool-val">Datenübermittlung in die USA möglich; Google ist unter dem EU-US Data Privacy Framework zertifiziert</span>
+        </div>
+        <p style="font-size: 13px; margin-top: 12px;">
+          <strong style="color: var(--ink);">Opt-out:</strong> Sie können die Erfassung durch GA4 über den Cookie-Manager auf unserer Website oder durch Installation des
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="color: var(--accent);">Google Analytics Opt-out Browser-Add-ons</a> deaktivieren.
+          Datenschutzerklärung Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: var(--accent);">policies.google.com/privacy</a>
+        </p>
+      </div>
+
+      <!-- Meta Pixel -->
+      <div class="tool-card">
+        <div class="tool-header">
+          <span class="tool-name">Meta Pixel (Facebook Pixel)</span>
+          <span class="tool-badge">Marketing</span>
+        </div>
+        <div class="tool-grid">
+          <span class="tool-key">Anbieter</span>
+          <span class="tool-val">Meta Platforms Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland</span>
+          <span class="tool-key">Muttergesellschaft</span>
+          <span class="tool-val">Meta Platforms Inc., 1 Hacker Way, Menlo Park, CA 94025, USA</span>
+          <span class="tool-key">Zweck</span>
+          <span class="tool-val">Conversion-Tracking, Messung der Werbewirksamkeit von Facebook- und Instagram-Anzeigen, Erstellung von Custom Audiences und Lookalike Audiences für gezielte Werbekampagnen</span>
+          <span class="tool-key">Erhobene Daten</span>
+          <span class="tool-val">Besuchte Seiten, Klicks, Seitenaufrufe, ggf. Conversion-Events (z. B. Reservierungsabschluss); Verknüpfung mit Facebook-Nutzerprofil möglich, falls eingeloggt</span>
+          <span class="tool-key">Rechtsgrundlage</span>
+          <span class="tool-val">Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</span>
+          <span class="tool-key">Speicherdauer</span>
+          <span class="tool-val">Bis zu 180 Tage (Conversion-Fenster); Cookie-Laufzeit bis zu 90 Tage</span>
+          <span class="tool-key">Drittland</span>
+          <span class="tool-val">Datenübermittlung in die USA möglich; Meta ist unter dem EU-US Data Privacy Framework zertifiziert</span>
+        </div>
+        <p style="font-size: 13px; margin-top: 12px;">
+          <strong style="color: var(--ink);">Opt-out:</strong> Widerspruch über den Cookie-Manager auf unserer Website oder direkt über die Meta-Einstellungen:
+          <a href="https://www.facebook.com/settings/?tab=ads" target="_blank" rel="noopener" style="color: var(--accent);">facebook.com/settings → Werbeanzeigen</a>.
+          Datenschutzerklärung Meta: <a href="https://www.facebook.com/policy" target="_blank" rel="noopener" style="color: var(--accent);">facebook.com/policy</a>
+        </p>
+      </div>
+
+      <!-- Weitere mögliche Tools -->
+      <div class="tool-card">
+        <div class="tool-header">
+          <span class="tool-name">Google Ads / Tag Manager</span>
+          <span class="tool-badge">Marketing</span>
+        </div>
+        <div class="tool-grid">
+          <span class="tool-key">Anbieter</span>
+          <span class="tool-val">Google Ireland Limited, Dublin, Irland</span>
+          <span class="tool-key">Zweck</span>
+          <span class="tool-val">Steuerung und Ausspielung von Google-Anzeigen (Search, Display); Remarketing; Messung von Anzeigeninteraktionen und Conversions. Der Google Tag Manager selbst verarbeitet keine personenbezogenen Daten, steuert jedoch das Laden der übrigen Tags.</span>
+          <span class="tool-key">Rechtsgrundlage</span>
+          <span class="tool-val">Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</span>
+          <span class="tool-key">Drittland</span>
+          <span class="tool-val">USA (EU-US Data Privacy Framework)</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 05 Cookies -->
+    <section class="section" id="cookies">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Cookies</h2>
+      </div>
+      <p>Unsere Website verwendet Cookies — kleine Textdateien, die in Ihrem Browser gespeichert werden. Sie können Ihre Cookie-Einstellungen jederzeit über den Cookie-Manager auf unserer Website anpassen oder Ihren Browser so konfigurieren, dass Cookies abgelehnt werden.</p>
+
+      <table class="cookie-table">
+        <thead>
+          <tr>
+            <th>Cookie-Typ</th>
+            <th>Zweck</th>
+            <th>Laufzeit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Notwendig</td>
+            <td>Technischer Betrieb, Cookie-Einwilligungs-Präferenz (z. B. CookieYes, Cookiebot)</td>
+            <td>1 Jahr</td>
+          </tr>
+          <tr>
+            <td>Analyse (GA4)</td>
+            <td>Websitestatistiken, Nutzerverhalten, Conversions</td>
+            <td>Bis 2 Jahre</td>
+          </tr>
+          <tr>
+            <td>Marketing (Meta)</td>
+            <td>Conversion-Tracking, Werberelevanz, Audience-Bildung</td>
+            <td>Bis 90 Tage</td>
+          </tr>
+          <tr>
+            <td>Marketing (Google Ads)</td>
+            <td>Anzeigenauslieferung, Remarketing</td>
+            <td>Bis 13 Monate</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 8px;">Notwendige Cookies werden ohne Einwilligung gesetzt (Art. 6 Abs. 1 lit. f DSGVO). Alle weiteren Cookies werden erst nach Ihrer ausdrücklichen Einwilligung aktiviert (Art. 6 Abs. 1 lit. a DSGVO).</p>
+    </section>
+
+    <!-- 06 Drittländer -->
+    <section class="section" id="drittlaender">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Datenübermittlung in Drittländer</h2>
+      </div>
+      <p>Einige der eingesetzten Tools (Google, Meta) übermitteln Daten in die Vereinigten Staaten von Amerika. Für diese Übermittlungen bestehen geeignete Garantien gemäß Art. 46 DSGVO: Google und Meta sind unter dem <strong>EU-US Data Privacy Framework</strong> (Angemessenheitsbeschluss der EU-Kommission vom 10. Juli 2023) zertifiziert, das ein angemessenes Schutzniveau für personenbezogene Daten gewährleistet.</p>
+    </section>
+
+    <!-- 07 Speicherdauer -->
+    <section class="section" id="speicherdauer">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Speicherdauer</h2>
+      </div>
+      <p>Wir speichern personenbezogene Daten nur so lange, wie es für die jeweiligen Verarbeitungszwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen. Nach Wegfall des Verarbeitungszwecks oder Ablauf gesetzlicher Fristen werden die Daten routinemäßig gelöscht.</p>
+      <p>Für die jeweils konkreten Speicherdauern der eingesetzten Tracking-Tools verweisen wir auf die Angaben in Abschnitt 4. Gesetzliche Aufbewahrungsfristen (z. B. steuerrechtliche Fristen nach italientischem Recht: 10 Jahre) bleiben hiervon unberührt.</p>
+    </section>
+
+    <!-- 08 Rechte -->
+    <section class="section" id="rechte">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2 class="section-title">Ihre Rechte</h2>
+      </div>
+      <p>Als betroffene Person stehen Ihnen nach der DSGVO folgende Rechte zu. Zur Ausübung dieser Rechte wenden Sie sich bitte an die in Abschnitt 9 genannten Kontaktdaten.</p>
+      <ul class="rights-list">
+        <li>
+          <span class="rights-icon">◎</span>
+          <div><strong>Auskunft (Art. 15 DSGVO)</strong>Sie haben das Recht, Auskunft über die von uns verarbeiteten personenbezogenen Daten zu erhalten.</div>
+        </li>
+        <li>
+          <span class="rights-icon">◎</span>
+          <div><strong>Berichtigung (Art. 16 DSGVO)</strong>Sie haben das Recht, unrichtige oder unvollständige Daten unverzüglich berichtigen zu lassen.</div>
+        </li>
+        <li>
+          <span class="rights-icon">◎</span>
+          <div><strong>Löschung (Art. 17 DSGVO)</strong>Sie haben das Recht auf Löschung Ihrer Daten, sofern keine gesetzliche Aufbewahrungspflicht entgegensteht.</div>
+        </li>
+        <li>
+          <span class="rights-icon">◎</span>
+          <div><strong>Einschränkung der Verarbeitung (Art. 18 DSGVO)</strong>Sie können die Einschränkung der Verarbeitung Ihrer Daten verlangen, z. B. während einer Prüfung der Richtigkeit.</div>
+        </li>
+        <li>
+          <span class="rights-icon">◎</span>
+          <div><strong>Datenübertragbarkeit (Art. 20 DSGVO)</strong>Sie haben das Recht, Ihre Daten in einem strukturierten, maschinenlesbaren Format zu erhalten oder an einen anderen Verantwortlichen übermitteln zu lassen.</div>
+        </li>
+        <li>
+          <span class="rights-icon">◎</span>
+          <div><strong>Widerspruch (Art. 21 DSGVO)</strong>Sie können der Verarbeitung Ihrer Daten auf Basis berechtigter Interessen jederzeit widersprechen — insbesondere der Verarbeitung zu Werbezwecken.</div>
+        </li>
+        <li>
+          <span class="rights-icon">◎</span>
+          <div><strong>Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO)</strong>Eine einmal erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen — z. B. über den Cookie-Manager auf unserer Website.</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 09 Kontakt -->
+    <section class="section" id="kontakt">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2 class="section-title">Kontakt &amp; Beschwerderecht</h2>
+      </div>
+      <p>Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte wenden Sie sich bitte an:</p>
+      <div class="contact-card">
+        <div class="info-grid">
+          <span class="info-label">Gesellschaft</span>
+          <span class="info-value">Jo Klebe GmbH</span>
+          <span class="info-label">E-Mail</span>
+          <span class="info-value"><a href="mailto:info@rafenstein.it">info@rafenstein.it</a></span>
+          <span class="info-label">Telefon</span>
+          <span class="info-value"><a href="tel:+393762800929">+39 376 280 0929</a></span>
+          <span class="info-label">Adresse</span>
+          <span class="info-value">Via Perathoner 17, 39100 Bozen (BZ), Italien</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 36px;">Beschwerderecht bei der Aufsichtsbehörde</h3>
+      <p>Sie haben das Recht, bei der zuständigen Datenschutzaufsichtsbehörde Beschwerde einzureichen. Da wir in Italien ansässig sind, ist dies der <strong>Garante per la protezione dei dati personali</strong> (Italienische Datenschutzbehörde):</p>
+      <div class="info-grid" style="margin-top: 16px;">
+        <span class="info-label">Behörde</span>
+        <span class="info-value">Garante per la protezione dei dati personali</span>
+        <span class="info-label">Adresse</span>
+        <span class="info-value">Piazza Venezia, 11 — 00187 Roma, Italien</span>
+        <span class="info-label">Website</span>
+        <span class="info-value"><a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">garanteprivacy.it</a></span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-left">© 2025 Jo Klebe GmbH · Bistro Vicino, Bozen</span>
+    <nav class="footer-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html" class="active">Datenschutz</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
