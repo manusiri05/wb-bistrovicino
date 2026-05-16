@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bistro Vicino — Bozen · Waltherpark</title>
-  <meta name="description" content="Bistro Vicino am Waltherpark in Bozen. Frühstück, Panini und Pinsa. Mo–Fr 07:00 – 19:00.">
+  <meta name="description" content="Bistro Vicino am Waltherpark in Bozen. Frühstück, Pinzeria, Centrifughe und Aperitivi. Mo–Fr 07:00 – 19:00.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,27 +139,37 @@
     .menu-cat{display:contents}
     .menu-cat-heading{grid-column:1 / -1;margin:48px 0 12px;padding-bottom:12px;
       border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;
-      align-items:baseline}
+      align-items:baseline;flex-wrap:wrap;gap:8px}
     .menu-cat:first-child .menu-cat-heading{margin-top:0}
     .menu-cat-heading h3{margin:0;font-family:"Instrument Serif",serif;
       font-weight:400;font-size:34px;letter-spacing:-.01em}
     .menu-cat-heading .time{font-size:13px;color:var(--ink-mute);
       letter-spacing:.06em;text-transform:uppercase}
+    .menu-cat-heading .menu-deal{font-size:13px;color:var(--ink-2);
+      border:1px solid var(--line-2);padding:4px 12px;border-radius:2px;
+      letter-spacing:.03em}
     .menu-row{display:grid;grid-template-columns:1fr auto;align-items:baseline;
       gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
     .menu-row .name{font-family:"Instrument Serif",serif;font-size:26px;
       line-height:1.05;letter-spacing:-.01em}
+    .menu-row .name .allergen{font-size:11px;font-family:"DM Sans",sans-serif;
+      color:var(--ink-mute);letter-spacing:.04em;vertical-align:super;margin-left:3px;font-style:normal}
     .menu-row .desc{font-size:14.5px;color:var(--ink-mute);margin-top:4px;line-height:1.45}
     .menu-row .price{font-family:"Instrument Serif",serif;font-size:22px;
       letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
 
-    /* hide non-active categories */
-    .menu-list[data-filter="fruh"] .menu-cat[data-cat="pan"],
-    .menu-list[data-filter="fruh"] .menu-cat[data-cat="pin"],
-    .menu-list[data-filter="pan"] .menu-cat[data-cat="fruh"],
-    .menu-list[data-filter="pan"] .menu-cat[data-cat="pin"],
-    .menu-list[data-filter="pin"] .menu-cat[data-cat="fruh"],
-    .menu-list[data-filter="pin"] .menu-cat[data-cat="pan"]{display:none}
+    /* ─── Filter: hide all cats except active ─── */
+    .menu-list[data-filter]:not([data-filter="all"]) .menu-cat{display:none}
+    .menu-list[data-filter="col"]  .menu-cat[data-cat="col"],
+    .menu-list[data-filter="cent"] .menu-cat[data-cat="cent"],
+    .menu-list[data-filter="pin"]  .menu-cat[data-cat="pin"],
+    .menu-list[data-filter="ins"]  .menu-cat[data-cat="ins"],
+    .menu-list[data-filter="aper"] .menu-cat[data-cat="aper"],
+    .menu-list[data-filter="stru"] .menu-cat[data-cat="stru"]{display:contents}
+
+    /* ─── Allergen note ─── */
+    .allergen-note{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);
+      font-size:13px;color:var(--ink-mute);line-height:1.6;grid-column:1/-1}
 
     /* ─── Info grid ─── */
     section.info{padding:120px 0;background:var(--bg-soft);border-bottom:1px solid var(--line)}
@@ -204,6 +214,13 @@
       gap:20px;font-size:15px}
     section.cta-block .links .sep{color:var(--line-2)}
 
+    /* ─── CTA call button ─── */
+    .btn-call{display:inline-flex;align-items:center;gap:10px;
+      background:var(--ink);color:#fff;text-decoration:none;
+      padding:14px 28px;border-radius:2px;font-size:15px;letter-spacing:.02em;
+      transition:background .2s}
+    .btn-call:hover{background:var(--ink-2)}
+
     /* ─── Footer ─── */
     footer.site{padding:80px 0 40px;font-size:14px;color:var(--ink-2)}
     footer.site .container{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px}
@@ -242,9 +259,9 @@
   <div class="inner">
     <a href="#" class="brand-mark">Bistro <em>Vicino</em></a>
     <nav class="primary-nav">
-      <a href="#fruehstueck"><span lang="de">Frühstück</span><span lang="it">Colazione</span></a>
-      <a href="#panini">Panini</a>
-      <a href="#pinsa">Pinsa</a>
+      <a href="#colazione"><span lang="de">Frühstück</span><span lang="it">Colazione</span></a>
+      <a href="#pinzeria">Pinzeria</a>
+      <a href="#aperitivi">Aperitivi</a>
       <a href="#karte"><span lang="de">Karte</span><span lang="it">Menù</span></a>
       <a href="#standort"><span lang="de">Standort</span><span lang="it">Dove siamo</span></a>
     </nav>
@@ -269,7 +286,7 @@
   <div class="bg">
     <img
       src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1800&q=85&fit=crop&crop=center"
-      alt="Bistro Vicino – Theke und Atmosphäre"
+      alt="Bistro Vicino – Atmosphäre und Theke"
       loading="eager"
     >
   </div>
@@ -279,21 +296,21 @@
       <span lang="it">Bistrò · Bolzano al Waltherpark</span>
     </span>
     <h1 class="display">
-      <span lang="de">Frühstück, Panini, Pinsa.<br><em>Direkt am Waltherpark.</em></span>
-      <span lang="it">Colazione, panini, pinsa.<br><em>Accanto al Waltherpark.</em></span>
+      <span lang="de">Frühstück, Pinza,<br><em>Aperitivo.</em></span>
+      <span lang="it">Colazione, pinza,<br><em>aperitivo.</em></span>
     </h1>
     <div class="meta">
-      <a href="#standort"><span lang="de">Öffnungszeiten</span><span lang="it">Orari</span></a>
-      <span class="sep">·</span>
       <a href="#karte"><span lang="de">Speisekarte ↓</span><span lang="it">Menù ↓</span></a>
       <span class="sep">·</span>
-      <a href="#standort"><span lang="de">Anfahrt ↗</span><span lang="it">Indicazioni ↗</span></a>
+      <a href="#standort"><span lang="de">Öffnungszeiten</span><span lang="it">Orari</span></a>
+      <span class="sep">·</span>
+      <a href="tel:+393762800929"><span lang="de">Vorbestellen ↗</span><span lang="it">Prenota ↗</span></a>
     </div>
   </div>
 </section>
 
-<!-- ─────────────────────────  FRÜHSTÜCK  ───────────────────────── -->
-<section class="edit" id="fruehstueck">
+<!-- ─────────────────────────  COLAZIONE  ───────────────────────── -->
+<section class="edit" id="colazione">
   <div class="container">
     <div class="text">
       <span class="kicker">
@@ -305,28 +322,28 @@
         <span lang="it">Il primo caffè.<br><em>E un cornetto.</em></span>
       </h2>
       <p class="lead">
-        <span lang="de">Cappuccino frisch gemahlen, Cornetto vom Bäcker nebenan, Uova on Toast wenn der Tag länger werden soll. Zum Mitnehmen oder auf einen Sprung — Stehkaffee, wie er sein soll.</span>
-        <span lang="it">Cappuccino macinato al momento, cornetto dal forno qui accanto, uova su pane tostato per chi ha voglia di restare. Da asporto o al banco — caffè in piedi, come si deve.</span>
+        <span lang="de">Uova in Camicia mit Avocado und Lachs, Pancakes mit Maple Syrup, French Toast oder die klassische Colazione mit Brotkorb und Konfitüre. Frisch, unkompliziert — so beginnt ein guter Tag.</span>
+        <span lang="it">Uova in camicia con avocado e salmone, pancakes con sciroppo d'acero, french toast o la colazione tradizionale con cestino di pane e marmellata. Fresco, semplice — così inizia una buona giornata.</span>
       </p>
       <div class="links">
-        <a href="#karte" class="link-arrow" data-filter="fruh">
+        <a href="#karte" class="link-arrow" data-filter="col">
           <span lang="de">Zur Frühstückskarte ↓</span><span lang="it">Al menù colazione ↓</span>
         </a>
         <span class="sep">·</span>
-        <a href="#standort" class="link-arrow">
-          <span lang="de">Zum Mitnehmen</span><span lang="it">Da asporto</span>
+        <a href="tel:+393762800929" class="link-arrow">
+          <span lang="de">Zum Mitnehmen ↗</span><span lang="it">Da asporto ↗</span>
         </a>
       </div>
       <div class="stats">
         <div>
           <div class="lbl"><span lang="de">Ab</span><span lang="it">Da</span></div>
-          <div class="val">€ 3,20</div>
+          <div class="val">€ 8,–</div>
         </div>
         <div>
           <div class="lbl"><span lang="de">Frisch</span><span lang="it">Pronto</span></div>
           <div class="val">
-            <span lang="de">in <em>3 Min.</em></span>
-            <span lang="it">in <em>3 min.</em></span>
+            <span lang="de">in <em>5 Min.</em></span>
+            <span lang="it">in <em>5 min.</em></span>
           </div>
         </div>
         <div>
@@ -338,111 +355,52 @@
     <div class="image">
       <img
         src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=900&q=85&fit=crop&crop=center"
-        alt="Cappuccino und Cornetto beim Bistro Vicino"
+        alt="Cappuccino beim Bistro Vicino Bozen"
         loading="lazy"
       >
     </div>
   </div>
 </section>
 
-<!-- ─────────────────────────  PANINI  ───────────────────────── -->
-<section class="edit reverse" id="panini">
+<!-- ─────────────────────────  PINZERIA  ───────────────────────── -->
+<section class="edit reverse" id="pinzeria">
   <div class="container">
     <div class="text">
       <span class="kicker">
-        <span lang="de">Panini · 11:00 – 19:00 · Mo–Fr</span>
-        <span lang="it">Panini · 11:00 – 19:00 · Lun–Ven</span>
+        <span lang="de">Pinzeria · 11:00 – 19:00 · Mo–Fr</span>
+        <span lang="it">Pinzeria · 11:00 – 19:00 · Lun–Ven</span>
       </span>
       <h2 class="section-title">
-        <span lang="de">Mittagspause.<br><em>In fünf Minuten.</em></span>
-        <span lang="it">Pausa pranzo.<br><em>In cinque minuti.</em></span>
+        <span lang="de">Aus dem Ofen.<br><em>Leicht &amp; knusprig.</em></span>
+        <span lang="it">Dal forno.<br><em>Leggera e croccante.</em></span>
       </h2>
       <p class="lead">
-        <span lang="de">Wir belegen frisch — Caprese mit Mozzarella di bufala, Südtiroler Speck mit Brie, Bresaola mit Rucola und Parmigiano. Brot vom Holzofen, Wurst und Käse aus der Region. Schnell, weil die Pause das verlangt; gut, weil das Essen das verdient.</span>
-        <span lang="it">Tutti i panini fatti al momento — caprese con mozzarella di bufala, speck dell'Alto Adige con brie, bresaola con rucola e parmigiano. Pane del forno a legna, salumi e formaggi locali. Veloce, perché la pausa lo richiede; buono, perché il cibo lo merita.</span>
-      </p>
-      <div class="links">
-        <a href="#karte" class="link-arrow" data-filter="pan">
-          <span lang="de">Alle Panini ↓</span><span lang="it">Tutti i panini ↓</span>
-        </a>
-        <span class="sep">·</span>
-        <a href="tel:+393762800929" class="link-arrow">
-          <span lang="de">Vorbestellung ↗</span><span lang="it">Preordina ↗</span>
-        </a>
-      </div>
-      <div class="stats">
-        <div>
-          <div class="lbl"><span lang="de">Von</span><span lang="it">Da</span></div>
-          <div class="val">€ 6,50</div>
-        </div>
-        <div>
-          <div class="lbl"><span lang="de">Fertig</span><span lang="it">Pronto</span></div>
-          <div class="val">
-            <span lang="de">in <em>5 Min.</em></span>
-            <span lang="it">in <em>5 min.</em></span>
-          </div>
-        </div>
-        <div>
-          <div class="lbl"><span lang="de">Auswahl</span><span lang="it">Scelta</span></div>
-          <div class="val">
-            <span lang="de">6 <em>Sorten</em></span>
-            <span lang="it">6 <em>varietà</em></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="image">
-      <img
-        src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=900&q=85&fit=crop&crop=center"
-        alt="Frisch belegtes Panino beim Bistro Vicino"
-        loading="lazy"
-      >
-    </div>
-  </div>
-</section>
-
-<!-- ─────────────────────────  PINSA  ───────────────────────── -->
-<section class="edit" id="pinsa">
-  <div class="container">
-    <div class="text">
-      <span class="kicker">
-        <span lang="de">Pinsa · 11:00 – 19:00 · Mo–Fr</span>
-        <span lang="it">Pinsa · 11:00 – 19:00 · Lun–Ven</span>
-      </span>
-      <h2 class="section-title">
-        <span lang="de">Aus dem Ofen.<br><em>72 Stunden Geduld.</em></span>
-        <span lang="it">Dal forno.<br><em>72 ore di pazienza.</em></span>
-      </h2>
-      <p class="lead">
-        <span lang="de">Pinsa romana mit dreitägig gereiftem Teig — leichter, knuspriger, bekömmlicher als jede schnelle Pizza. Klassisch mit San Marzano und Mozzarella, scharf mit Salame Diavola, oder Tartufo zum Verwöhnen.</span>
-        <span lang="it">Pinsa romana con impasto maturato tre giorni — più leggera, croccante e digeribile di qualsiasi pizza veloce. Classica con San Marzano e mozzarella, piccante con salame diavola, o al tartufo per coccolarsi.</span>
+        <span lang="de">Acht Pinze zur Wahl — von der klassischen Margherita bis zur Mortadella e Pistacchio. Der Teig reift dreitägig, das macht sie leichter und bekömmlicher als jede schnelle Pizza. Das Menu Pinza bringt dazu Insalatina, Getränk und Caffè für 14 €.</span>
+        <span lang="it">Otto pinze tra cui scegliere — dalla classica Margherita alla Mortadella e pistacchio. L'impasto matura tre giorni: più leggero e digeribile di qualsiasi pizza veloce. Il Menù Pinza include insalatina, bevanda e caffè per soli 14 €.</span>
       </p>
       <div class="links">
         <a href="#karte" class="link-arrow" data-filter="pin">
-          <span lang="de">Alle Pinsa ↓</span><span lang="it">Tutte le pinse ↓</span>
+          <span lang="de">Alle Pinze ↓</span><span lang="it">Tutte le pinze ↓</span>
         </a>
         <span class="sep">·</span>
-        <a href="#standort" class="link-arrow">
-          <span lang="de">Mit Aperitivo</span><span lang="it">Con aperitivo</span>
+        <a href="tel:+393762800929" class="link-arrow">
+          <span lang="de">Vorbestellen ↗</span><span lang="it">Preordina ↗</span>
         </a>
       </div>
       <div class="stats">
         <div>
           <div class="lbl"><span lang="de">Von</span><span lang="it">Da</span></div>
-          <div class="val">€ 8,50</div>
+          <div class="val">€ 7,–</div>
         </div>
         <div>
-          <div class="lbl"><span lang="de">Teig</span><span lang="it">Impasto</span></div>
-          <div class="val">
-            <span lang="de"><em>72 Std.</em></span>
-            <span lang="it"><em>72 ore</em></span>
-          </div>
+          <div class="lbl"><span lang="de">Menü</span><span lang="it">Menù</span></div>
+          <div class="val"><em>14 €</em></div>
         </div>
         <div>
           <div class="lbl"><span lang="de">Auswahl</span><span lang="it">Scelta</span></div>
           <div class="val">
-            <span lang="de">6 <em>Sorten</em></span>
-            <span lang="it">6 <em>varietà</em></span>
+            <span lang="de">8 <em>Sorten</em></span>
+            <span lang="it">8 <em>varietà</em></span>
           </div>
         </div>
       </div>
@@ -450,7 +408,60 @@
     <div class="image">
       <img
         src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=85&fit=crop&crop=center"
-        alt="Pinsa romana frisch aus dem Ofen"
+        alt="Pinza romana frisch aus dem Ofen"
+        loading="lazy"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  APERITIVI  ───────────────────────── -->
+<section class="edit" id="aperitivi">
+  <div class="container">
+    <div class="text">
+      <span class="kicker">
+        <span lang="de">Aperitivi · Mo–Fr · ab 15:00</span>
+        <span lang="it">Aperitivi · Lun–Ven · dalle 15:00</span>
+      </span>
+      <h2 class="section-title">
+        <span lang="de">Der Feierabend<br><em>beginnt hier.</em></span>
+        <span lang="it">L'aperitivo<br><em>comincia qui.</em></span>
+      </h2>
+      <p class="lead">
+        <span lang="de">Spritz Aperol, Spritz Campari, Hugo, Negroni oder unser Vicino Spritz — neun Variationen für den richtigen Einstieg in den Abend. Das Menu Aperitivo: zwei Drinks und Stuzzichini für 12 €.</span>
+        <span lang="it">Spritz Aperol, Spritz Campari, Hugo, Negroni o il nostro Vicino Spritz — nove variazioni per iniziare bene la serata. Il Menù Aperitivo: due drink e stuzzichini per 12 €.</span>
+      </p>
+      <div class="links">
+        <a href="#karte" class="link-arrow" data-filter="aper">
+          <span lang="de">Alle Drinks ↓</span><span lang="it">Tutti i drink ↓</span>
+        </a>
+        <span class="sep">·</span>
+        <a href="#standort" class="link-arrow">
+          <span lang="de">Öffnungszeiten</span><span lang="it">Orari</span>
+        </a>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="lbl"><span lang="de">Ab</span><span lang="it">Da</span></div>
+          <div class="val">€ 3,–</div>
+        </div>
+        <div>
+          <div class="lbl"><span lang="de">Menü</span><span lang="it">Menù</span></div>
+          <div class="val"><em>12 €</em></div>
+        </div>
+        <div>
+          <div class="lbl"><span lang="de">Drinks</span><span lang="it">Drink</span></div>
+          <div class="val">
+            <span lang="de">9 <em>Sorten</em></span>
+            <span lang="it">9 <em>varietà</em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="image">
+      <img
+        src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=900&q=85&fit=crop&crop=center"
+        alt="Aperitivi und Cocktails beim Bistro Vicino"
         loading="lazy"
       >
     </div>
@@ -469,246 +480,308 @@
         </h2>
       </div>
       <p class="lead">
-        <span lang="de">Frühstück bis 11 Uhr. Panini und Pinsa von 11 bis 19 Uhr. Preise inkl. MwSt., Allergene auf Anfrage.</span>
-        <span lang="it">Colazione fino alle 11. Panini e pinsa dalle 11 alle 19. Prezzi IVA inclusa, allergeni su richiesta.</span>
+        <span lang="de">Frühstück bis 11 Uhr. Pinzeria und Aperitivi von 11 bis 19 Uhr. Preise inkl. MwSt. Allergene auf Anfrage.</span>
+        <span lang="it">Colazione fino alle 11. Pinzeria e aperitivi dalle 11 alle 19. Prezzi IVA inclusa. Allergeni su richiesta.</span>
       </p>
     </div>
 
     <div class="filter" role="tablist">
       <button type="button" class="on" data-filter="all">
         <span lang="de">Alles</span><span lang="it">Tutto</span>
-        <span class="count">18</span>
+        <span class="count">27</span>
       </button>
-      <button type="button" data-filter="fruh">
+      <button type="button" data-filter="col">
         <span lang="de">Frühstück</span><span lang="it">Colazione</span>
-        <span class="count">6</span>
+        <span class="count">4</span>
       </button>
-      <button type="button" data-filter="pan">Panini<span class="count">6</span></button>
-      <button type="button" data-filter="pin">Pinsa<span class="count">6</span></button>
+      <button type="button" data-filter="cent">
+        Centrifughe<span class="count">3</span>
+      </button>
+      <button type="button" data-filter="pin">
+        Pinzeria<span class="count">8</span>
+      </button>
+      <button type="button" data-filter="ins">
+        Insalate<span class="count">2</span>
+      </button>
+      <button type="button" data-filter="aper">
+        Aperitivi<span class="count">9</span>
+      </button>
+      <button type="button" data-filter="stru">
+        Strudel<span class="count">1</span>
+      </button>
     </div>
 
     <div class="menu-list" id="menuList" data-filter="all">
 
-      <!-- Frühstück -->
-      <div class="menu-cat" data-cat="fruh">
+      <!-- ── Colazione ── -->
+      <div class="menu-cat" data-cat="col">
         <div class="menu-cat-heading">
           <h3><span lang="de">Frühstück</span><span lang="it">Colazione</span></h3>
           <span class="time">07 – 11</span>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">Cappuccino &amp; Cornetto</div>
+            <div class="name">Uovo in Camicia con Avocado e Salmone
+              <span class="allergen">1,3,7</span>
+            </div>
             <div class="desc">
-              <span lang="de">Frisch gemahlen, klassisch.</span>
-              <span lang="it">Macinato fresco, classico.</span>
+              <span lang="de">Servito con pane, pomodori e cetrioli.</span>
+              <span lang="it">Servito con pane, pomodori e cetrioli.</span>
             </div>
           </div>
-          <div class="price">€ 3,80</div>
+          <div class="price">€ 14,–</div>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">
-              <span lang="de">Yogurt mit Müsli &amp; Honig</span>
-              <span lang="it">Yogurt con muesli e miele</span>
+            <div class="name">Pancakes 4pz
+              <span class="allergen">1,3,6,8,7</span>
             </div>
             <div class="desc">
-              <span lang="de">Hausgemachtes Müsli, Südtiroler Honig.</span>
-              <span lang="it">Muesli fatto in casa, miele dell'Alto Adige.</span>
+              <span lang="de">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
+              <span lang="it">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
             </div>
           </div>
-          <div class="price">€ 4,90</div>
+          <div class="price">€ 10,–</div>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">
-              <span lang="de">Uova on Toast</span>
-              <span lang="it">Uova su pane tostato</span>
+            <div class="name">French Toast 2pz
+              <span class="allergen">1,3,6,8,7</span>
             </div>
             <div class="desc">
-              <span lang="de">Zwei Eier, Avocado, Pfeffer.</span>
-              <span lang="it">Due uova, avocado, pepe.</span>
+              <span lang="de">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
+              <span lang="it">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
             </div>
           </div>
-          <div class="price">€ 6,50</div>
+          <div class="price">€ 11,–</div>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">Brioche con marmellata</div>
-            <div class="desc">
-              <span lang="de">Heimische Aprikose oder Heidelbeere.</span>
-              <span lang="it">Albicocca o mirtillo locale.</span>
-            </div>
-          </div>
-          <div class="price">€ 3,20</div>
-        </div>
-        <div class="menu-row">
-          <div>
-            <div class="name">Spremuta d'arancia</div>
-            <div class="desc">
-              <span lang="de">Frisch gepresst, 0,3 l.</span>
-              <span lang="it">Spremuta al momento, 0,3 l.</span>
-            </div>
-          </div>
-          <div class="price">€ 3,50</div>
-        </div>
-        <div class="menu-row">
-          <div>
-            <div class="name">
-              <span lang="de">American Breakfast</span>
-              <span lang="it">Colazione americana</span>
+            <div class="name">Colazione Tradizionale
+              <span class="allergen">1,7</span>
             </div>
             <div class="desc">
-              <span lang="de">Eier, Speck, Toast, Kaffee.</span>
-              <span lang="it">Uova, pancetta, toast, caffè.</span>
+              <span lang="de">Cestino di pane, marmellata e burro.</span>
+              <span lang="it">Cestino di pane, marmellata e burro.</span>
             </div>
           </div>
-          <div class="price">€ 9,80</div>
+          <div class="price">€ 8,–</div>
         </div>
       </div>
 
-      <!-- Panini -->
-      <div class="menu-cat" data-cat="pan">
+      <!-- ── Centrifughe ── -->
+      <div class="menu-cat" data-cat="cent">
         <div class="menu-cat-heading">
-          <h3>Panini</h3>
-          <span class="time">11 – 19</span>
+          <h3>Centrifughe</h3>
+          <span class="time">07 – 19</span>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">Caprese</div>
-            <div class="desc">
-              <span lang="de">Mozzarella di bufala, Tomate, Basilikum.</span>
-              <span lang="it">Mozzarella di bufala, pomodoro, basilico.</span>
-            </div>
+            <div class="name">La Dolce Vita</div>
+            <div class="desc">Carote · Arance · Zenzero · Curcuma · Succo di limone</div>
           </div>
-          <div class="price">€ 6,50</div>
+          <div class="price">€ 6,–</div>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">Prosciutto e Formaggio</div>
-            <div class="desc">
-              <span lang="de">Parma 24M &amp; Stracchino.</span>
-              <span lang="it">Parma 24M e stracchino.</span>
-            </div>
+            <div class="name">Bella Detox</div>
+            <div class="desc">Barbabietola rossa · Mela · Carote · Olio d'oliva</div>
           </div>
-          <div class="price">€ 7,20</div>
+          <div class="price">€ 6,–</div>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">
-              <span lang="de">Speck &amp; Brie</span>
-              <span lang="it">Speck e brie</span>
-            </div>
-            <div class="desc">
-              <span lang="de">Südtiroler Speck g.g.A., Rucola.</span>
-              <span lang="it">Speck Alto Adige IGP, rucola.</span>
-            </div>
+            <div class="name">Energy Boost</div>
+            <div class="desc">Mela · Sedano · Cetrioli · Basilico</div>
           </div>
-          <div class="price">€ 7,50</div>
-        </div>
-        <div class="menu-row">
-          <div>
-            <div class="name">Vegetariano</div>
-            <div class="desc">
-              <span lang="de">Grillgemüse, Pesto, Pecorino.</span>
-              <span lang="it">Verdure grigliate, pesto, pecorino.</span>
-            </div>
-          </div>
-          <div class="price">€ 6,80</div>
-        </div>
-        <div class="menu-row">
-          <div>
-            <div class="name">Tonno e Olive</div>
-            <div class="desc">
-              <span lang="de">Thunfisch, Taggiasca-Oliven, Kapern.</span>
-              <span lang="it">Tonno, olive taggiasche, capperi.</span>
-            </div>
-          </div>
-          <div class="price">€ 6,90</div>
-        </div>
-        <div class="menu-row">
-          <div>
-            <div class="name">
-              <span lang="de">Bresaola &amp; Rucola</span>
-              <span lang="it">Bresaola e rucola</span>
-            </div>
-            <div class="desc">
-              <span lang="de">Bresaola della Valtellina, Parmigiano.</span>
-              <span lang="it">Bresaola della Valtellina, parmigiano.</span>
-            </div>
-          </div>
-          <div class="price">€ 7,80</div>
+          <div class="price">€ 6,–</div>
         </div>
       </div>
 
-      <!-- Pinsa -->
+      <!-- ── Pinzeria ── -->
       <div class="menu-cat" data-cat="pin">
         <div class="menu-cat-heading">
-          <h3>Pinsa</h3>
+          <h3>Pinzeria</h3>
+          <span class="menu-deal">
+            <span lang="de">Menu Pinza 14 € · Insalatina + Pinza + Bevanda + Caffè</span>
+            <span lang="it">Menù Pinza 14 € · Insalatina + Pinza + Bevanda + Caffè</span>
+          </span>
           <span class="time">11 – 19</span>
         </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">Margherita</div>
-            <div class="desc">
-              <span lang="de">San Marzano, Fior di latte, Basilikum.</span>
-              <span lang="it">San Marzano, fior di latte, basilico.</span>
-            </div>
+            <div class="name">Margherita <span class="allergen">1,7</span></div>
+            <div class="desc">Mozzarella, pomodoro e basilico.</div>
           </div>
-          <div class="price">€ 8,50</div>
+          <div class="price">€ 7,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Prosciutto Cotto <span class="allergen">1,7,12</span></div>
+            <div class="desc">Mozzarella, pomodoro e prosciutto cotto.</div>
+          </div>
+          <div class="price">€ 9,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Speck <span class="allergen">1,7,12</span></div>
+            <div class="desc">Mozzarella, pomodoro e speck.</div>
+          </div>
+          <div class="price">€ 9,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Diavola <span class="allergen">1,7</span></div>
+            <div class="desc">Mozzarella, pomodoro, salame piccante e peperoni.</div>
+          </div>
+          <div class="price">€ 9,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Primavera <span class="allergen">1,7</span></div>
+            <div class="desc">Mozzarella, datterini, rucola e scaglie di grana.</div>
+          </div>
+          <div class="price">€ 9,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Vegetariana <span class="allergen">1,7</span></div>
+            <div class="desc">Mozzarella, pomodori, zucchini, peperoni e melanzane.</div>
+          </div>
+          <div class="price">€ 9,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Mortadella <span class="allergen">1,7,8</span></div>
+            <div class="desc">Mozzarella, pomodori freschi, mortadella e pistacchio.</div>
+          </div>
+          <div class="price">€ 11,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Tonno e Mais <span class="allergen">1,7</span></div>
+            <div class="desc">Mozzarella, pomodori freschi, tonno e mais.</div>
+          </div>
+          <div class="price">€ 9,–</div>
+        </div>
+      </div>
+
+      <!-- ── Insalate ── -->
+      <div class="menu-cat" data-cat="ins">
+        <div class="menu-cat-heading">
+          <h3>Insalate</h3>
+          <span class="time">11 – 19</span>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Insalatina Piccola Mista</div>
+          </div>
+          <div class="price">€ 5,–</div>
+        </div>
+
+        <div class="menu-row">
+          <div>
+            <div class="name">Insalatona Vicino <span class="allergen">1,7,8</span></div>
+            <div class="desc">Insalata verde, datterini, cetrioli, radicchio, mais, tonno, mozzarella e pistacchio — con vinaigrette fatta in casa e pane.</div>
+          </div>
+          <div class="price">€ 13,–</div>
+        </div>
+      </div>
+
+      <!-- ── Aperitivi ── -->
+      <div class="menu-cat" data-cat="aper">
+        <div class="menu-cat-heading">
+          <h3>Aperitivi</h3>
+          <span class="menu-deal">
+            <span lang="de">Menu Aperitivo 12 € · 2 Aperitivi + Stuzzichini</span>
+            <span lang="it">Menù Aperitivo 12 € · 2 aperitivi + stuzzichini</span>
+          </span>
+          <span class="time">11 – 19</span>
+        </div>
+
+        <div class="menu-row">
+          <div><div class="name">Spritz Aperol</div></div>
+          <div class="price">€ 4,–</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Spritz Campari</div></div>
+          <div class="price">€ 4,–</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Hugo</div></div>
+          <div class="price">€ 4,–</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Berry Fitz</div></div>
+          <div class="price">€ 4,–</div>
+        </div>
+        <div class="menu-row">
+          <div><div class="name">Lillet Spritz</div></div>
+          <div class="price">€ 5,–</div>
         </div>
         <div class="menu-row">
           <div>
-            <div class="name">Diavola</div>
-            <div class="desc">
-              <span lang="de">Salame piccante, scharf.</span>
-              <span lang="it">Salame piccante.</span>
-            </div>
+            <div class="name">Vicino Spritz</div>
+            <div class="desc"><span lang="de">Unser Hausaperitivio.</span><span lang="it">Il nostro aperitivo della casa.</span></div>
           </div>
-          <div class="price">€ 9,50</div>
+          <div class="price">€ 4,50</div>
         </div>
         <div class="menu-row">
           <div>
-            <div class="name">Quattro Formaggi</div>
-            <div class="desc">
-              <span lang="de">Mozzarella, Gorgonzola, Pecorino, Brie.</span>
-              <span lang="it">Mozzarella, gorgonzola, pecorino, brie.</span>
-            </div>
+            <div class="name">Prosecco</div>
+            <div class="desc">0,1 L</div>
           </div>
-          <div class="price">€ 9,80</div>
+          <div class="price">€ 3,–</div>
         </div>
         <div class="menu-row">
-          <div>
-            <div class="name">
-              <span lang="de">Prosciutto crudo &amp; Rucola</span>
-              <span lang="it">Prosciutto crudo e rucola</span>
-            </div>
-            <div class="desc">
-              <span lang="de">Parma, Rucola, Parmesan-Späne.</span>
-              <span lang="it">Parma, rucola, scaglie di parmigiano.</span>
-            </div>
-          </div>
-          <div class="price">€ 10,50</div>
+          <div><div class="name">Americano</div></div>
+          <div class="price">€ 7,–</div>
         </div>
         <div class="menu-row">
-          <div>
-            <div class="name">Verdure</div>
-            <div class="desc">
-              <span lang="de">Zucchini, Aubergine, Paprika.</span>
-              <span lang="it">Zucchine, melanzane, peperoni.</span>
-            </div>
-          </div>
-          <div class="price">€ 8,80</div>
+          <div><div class="name">Negroni</div></div>
+          <div class="price">€ 7,–</div>
         </div>
+      </div>
+
+      <!-- ── Strudel ── -->
+      <div class="menu-cat" data-cat="stru">
+        <div class="menu-cat-heading">
+          <h3>Strudel</h3>
+          <span class="time">07 – 19</span>
+        </div>
+
         <div class="menu-row">
           <div>
-            <div class="name">Tartufo</div>
+            <div class="name">Strudel fatto in casa <span class="allergen">1,3,7</span></div>
             <div class="desc">
-              <span lang="de">Trüffelcreme, Mozzarella, Parmesan.</span>
-              <span lang="it">Crema al tartufo, mozzarella, parmigiano.</span>
+              <span lang="de">Hausgemacht — +Panna <span class="allergen">1</span> +1 €</span>
+              <span lang="it">Fatto in casa — +Panna <span class="allergen">1</span> +1 €</span>
             </div>
           </div>
-          <div class="price">€ 12,50</div>
+          <div class="price">€ 4,50</div>
         </div>
+      </div>
+
+      <!-- Allergen note -->
+      <div class="allergen-note">
+        <span lang="de"><strong>Allergene:</strong> 1 Gluten · 3 Eier · 6 Schalenfrüchte · 7 Milch/Laktose · 8 Sesam · 12 Sulfite — Vollständige Allergeninformationen auf Anfrage.</span>
+        <span lang="it"><strong>Allergeni:</strong> 1 Glutine · 3 Uova · 6 Frutta a guscio · 7 Latte/Lattosio · 8 Sesamo · 12 Solfiti — Informazioni complete sugli allergeni disponibili su richiesta.</span>
       </div>
 
     </div>
@@ -744,28 +817,28 @@
           <div class="val">07 – 11</div>
         </div>
         <div class="desc">
-          <span lang="de">Cappu, Cornetto, Uova on Toast. Ab € 3,20.</span>
-          <span lang="it">Cappu, cornetto, uova su pane. Da € 3,20.</span>
+          <span lang="de">Pancakes, French Toast, Uova, Colazione Tradizionale. Ab 8 €.</span>
+          <span lang="it">Pancakes, French Toast, Uova, Colazione tradizionale. Da 8 €.</span>
         </div>
       </div>
       <div class="cell">
         <div>
-          <div class="lbl"><span lang="de">Mittagstisch</span><span lang="it">Pranzo</span></div>
-          <div class="val">Panini</div>
+          <div class="lbl">Pinzeria</div>
+          <div class="val">11 – 19</div>
         </div>
         <div class="desc">
-          <span lang="de">Frisch belegt in 5 Minuten. Auch zum Mitnehmen.</span>
-          <span lang="it">Fatti al momento in 5 minuti. Anche da asporto.</span>
+          <span lang="de">8 Pinze aus dem Ofen. Menu Pinza (Insalatina + Pinza + Bevanda + Caffè) 14 €.</span>
+          <span lang="it">8 pinze dal forno. Menù Pinza (insalatina + pinza + bevanda + caffè) 14 €.</span>
         </div>
       </div>
       <div class="cell">
         <div>
-          <div class="lbl"><span lang="de">Abend</span><span lang="it">Sera</span></div>
-          <div class="val">Pinsa</div>
+          <div class="lbl">Aperitivi</div>
+          <div class="val">11 – 19</div>
         </div>
         <div class="desc">
-          <span lang="de">Aus dem Ofen, 72-Stunden-Teig. Von € 8,50.</span>
-          <span lang="it">Dal forno, impasto 72 ore. Da € 8,50.</span>
+          <span lang="de">9 Variationen. Menu Aperitivo: 2 Drinks + Stuzzichini für 12 €.</span>
+          <span lang="it">9 variazioni. Menù Aperitivo: 2 drink + stuzzichini per 12 €.</span>
         </div>
       </div>
       <div class="cell">
@@ -846,8 +919,8 @@
 
       <div class="location-links">
         <a class="link-arrow" href="https://maps.google.com/?q=Piazza+Walther+Bolzano" target="_blank" rel="noopener">
-          <span lang="de">Auf Google Maps öffnen ↗</span>
-          <span lang="it">Apri in Google Maps ↗</span>
+          <span lang="de">Google Maps ↗</span>
+          <span lang="it">Google Maps ↗</span>
         </a>
         <a class="link-arrow" href="tel:+393762800929">+39 376 280 0929</a>
         <a class="link-arrow" href="mailto:info@rafenstein.it">info@rafenstein.it</a>
@@ -878,48 +951,33 @@
         </g>
         <rect x="200" y="155" width="180" height="120" rx="6" fill="#cfd7c0"/>
         <g fill="#a5b48a" opacity="0.7">
-          <circle cx="225" cy="180" r="10"/>
-          <circle cx="255" cy="195" r="12"/>
-          <circle cx="290" cy="175" r="11"/>
-          <circle cx="330" cy="195" r="13"/>
-          <circle cx="360" cy="180" r="10"/>
-          <circle cx="240" cy="240" r="11"/>
-          <circle cx="290" cy="245" r="14"/>
-          <circle cx="340" cy="240" r="12"/>
+          <circle cx="225" cy="180" r="10"/><circle cx="255" cy="195" r="12"/>
+          <circle cx="290" cy="175" r="11"/><circle cx="330" cy="195" r="13"/>
+          <circle cx="360" cy="180" r="10"/><circle cx="240" cy="240" r="11"/>
+          <circle cx="290" cy="245" r="14"/><circle cx="340" cy="240" r="12"/>
         </g>
-        <text x="290" y="220" text-anchor="middle"
-          font-family="DM Sans, sans-serif" font-size="13" letter-spacing="1.4"
-          fill="#5d6b48" font-weight="500">WALTHERPARK</text>
+        <text x="290" y="220" text-anchor="middle" font-family="DM Sans, sans-serif"
+          font-size="13" letter-spacing="1.4" fill="#5d6b48" font-weight="500">WALTHERPARK</text>
         <rect x="395" y="180" width="60" height="48" fill="#14130f"/>
         <g fill="#e6e2d8">
-          <rect x="20" y="50" width="80" height="55"/>
-          <rect x="20" y="155" width="80" height="65"/>
-          <rect x="20" y="265" width="80" height="80"/>
-          <rect x="510" y="40" width="70" height="55"/>
-          <rect x="510" y="150" width="70" height="60"/>
-          <rect x="510" y="265" width="70" height="55"/>
-          <rect x="510" y="365" width="70" height="50"/>
-          <rect x="155" y="50" width="65" height="45"/>
-          <rect x="240" y="40" width="100" height="55"/>
-          <rect x="360" y="50" width="80" height="45"/>
-          <rect x="155" y="290" width="80" height="55"/>
-          <rect x="260" y="295" width="90" height="50"/>
-          <rect x="380" y="290" width="80" height="55"/>
-          <rect x="155" y="385" width="90" height="55"/>
-          <rect x="280" y="395" width="80" height="50"/>
-          <rect x="395" y="385" width="80" height="55"/>
+          <rect x="20" y="50" width="80" height="55"/><rect x="20" y="155" width="80" height="65"/>
+          <rect x="20" y="265" width="80" height="80"/><rect x="510" y="40" width="70" height="55"/>
+          <rect x="510" y="150" width="70" height="60"/><rect x="510" y="265" width="70" height="55"/>
+          <rect x="510" y="365" width="70" height="50"/><rect x="155" y="50" width="65" height="45"/>
+          <rect x="240" y="40" width="100" height="55"/><rect x="360" y="50" width="80" height="45"/>
+          <rect x="155" y="290" width="80" height="55"/><rect x="260" y="295" width="90" height="50"/>
+          <rect x="380" y="290" width="80" height="55"/><rect x="155" y="385" width="90" height="55"/>
+          <rect x="280" y="395" width="80" height="50"/><rect x="395" y="385" width="80" height="55"/>
         </g>
-        <text x="290" y="120" text-anchor="middle"
-          font-family="Instrument Serif, serif" font-size="16" font-style="italic"
-          fill="#75726a">Piazza Walther</text>
+        <text x="290" y="120" text-anchor="middle" font-family="Instrument Serif, serif"
+          font-size="16" font-style="italic" fill="#75726a">Piazza Walther</text>
         <g transform="translate(425,204)">
           <circle r="22" fill="#14130f" opacity="0.12"/>
           <circle r="14" fill="#14130f"/>
           <circle r="4" fill="#fff"/>
         </g>
-        <text x="425" y="170" text-anchor="middle"
-          font-family="Instrument Serif, serif" font-style="italic" font-size="18"
-          fill="#14130f">Vicino</text>
+        <text x="425" y="170" text-anchor="middle" font-family="Instrument Serif, serif"
+          font-style="italic" font-size="18" fill="#14130f">Vicino</text>
         <text x="60" y="430" font-family="DM Sans, sans-serif" font-size="11"
           letter-spacing="1.2" fill="#a8a496">→ STAZIONE / BHF</text>
       </svg>
@@ -931,19 +989,19 @@
 <section class="cta-block">
   <div class="container">
     <h2 class="display">
-      <span lang="de">Auf einen Sprung<br><em>vorbeikommen?</em></span>
-      <span lang="it">Passi<br><em>a trovarci?</em></span>
+      <span lang="de">Einfach<br><em>vorbeikommen.</em></span>
+      <span lang="it">Passa<br><em>a trovarci.</em></span>
     </h2>
     <p>
-      <span lang="de">Wir sind da, Mo bis Fr, von 7 bis 19 Uhr. Anrufen, wenn's eilig ist — wir bereiten alles vor.</span>
-      <span lang="it">Ci siamo, lun–ven, dalle 7 alle 19. Telefoni se va di fretta — prepariamo tutto.</span>
+      <span lang="de">Kein Tisch nötig — einfach reinkommen. Für to-go oder wenn's eilig ist, kurz anrufen. Wir bereiten alles vor.</span>
+      <span lang="it">Nessuna prenotazione necessaria — entra e siediti. Per l'asporto o se hai fretta, chiama. Prepariamo tutto.</span>
     </p>
     <div class="links">
-      <a class="link-arrow" href="tel:+393762800929">
-        <span lang="de">Anrufen ↗</span><span lang="it">Telefono ↗</span>
+      <a class="btn-call" href="tel:+393762800929">
+        <span lang="de">↗ Jetzt anrufen</span><span lang="it">↗ Chiama ora</span>
       </a>
       <span class="sep">·</span>
-      <a class="link-arrow" href="#standort">
+      <a class="link-arrow" href="https://maps.google.com/?q=Piazza+Walther+Bolzano" target="_blank" rel="noopener">
         <span lang="de">Anfahrt ↗</span><span lang="it">Indicazioni ↗</span>
       </a>
       <span class="sep">·</span>
@@ -976,10 +1034,11 @@
     <div>
       <h5><span lang="de">Karte</span><span lang="it">Menù</span></h5>
       <ul>
-        <li><a href="#fruehstueck"><span lang="de">Frühstück</span><span lang="it">Colazione</span></a></li>
-        <li><a href="#panini">Panini</a></li>
-        <li><a href="#pinsa">Pinsa</a></li>
-        <li><a href="#karte"><span lang="de">Speisekarte</span><span lang="it">Menù</span></a></li>
+        <li><a href="#colazione"><span lang="de">Frühstück</span><span lang="it">Colazione</span></a></li>
+        <li><a href="#karte" data-filter="cent">Centrifughe</a></li>
+        <li><a href="#pinzeria">Pinzeria</a></li>
+        <li><a href="#aperitivi">Aperitivi</a></li>
+        <li><a href="#karte" data-filter="stru">Strudel</a></li>
       </ul>
     </div>
     <div>
@@ -1019,7 +1078,7 @@
   }
   filterButtons.forEach(b => b.addEventListener('click', () => setFilter(b.dataset.filter)));
 
-  // Filter links inside edit sections
+  // Scroll to menu and apply filter when editorial links are clicked
   document.querySelectorAll('a[data-filter]').forEach(a => {
     a.addEventListener('click', () => setFilter(a.dataset.filter));
   });
