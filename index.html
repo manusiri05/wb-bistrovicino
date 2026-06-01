@@ -9,7 +9,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TB693V9F');</script>
 <!-- End Google Tag Manager -->
-  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bistro Vicino — Bozen · Waltherpark</title>
@@ -69,6 +69,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .primary-nav{display:flex;gap:28px;font-size:14.5px;justify-content:center}
     .primary-nav a{text-decoration:none;color:var(--ink);padding:4px 0}
     .primary-nav a:hover{color:var(--ink-mute)}
+    .primary-nav a.nav-reserve{
+      background:var(--ink);color:#fff;padding:6px 16px;border-radius:2px;
+      font-size:13px;letter-spacing:.04em}
+    .primary-nav a.nav-reserve:hover{background:var(--ink-2);color:#fff}
     .header-right{display:flex;justify-content:flex-end;align-items:center;gap:16px;font-size:14px}
     .status-pill{font-size:13px;color:var(--ink-2);display:inline-flex;
       align-items:center;gap:8px}
@@ -103,6 +107,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero .meta a{color:#fff;text-decoration:none;font-size:15px}
     .hero .meta a:hover{color:rgba(255,255,255,.7)}
     .hero .meta .sep{color:rgba(255,255,255,.4)}
+    .hero .meta .hero-reserve{
+      background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);
+      padding:9px 20px;border-radius:2px;backdrop-filter:blur(4px);
+      font-size:14px;letter-spacing:.04em;transition:background .2s,border-color .2s}
+    .hero .meta .hero-reserve:hover{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.7)}
 
     /* ─── Editorial sections ─── */
     section.edit{padding:120px 0;border-bottom:1px solid var(--line)}
@@ -167,7 +176,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .menu-row .price{font-family:"Instrument Serif",serif;font-size:22px;
       letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
 
-    /* ─── Filter: hide all cats except active ─── */
+    /* ─── Filter ─── */
     .menu-list[data-filter]:not([data-filter="all"]) .menu-cat{display:none}
     .menu-list[data-filter="col"]  .menu-cat[data-cat="col"],
     .menu-list[data-filter="cent"] .menu-cat[data-cat="cent"],
@@ -220,15 +229,89 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     section.cta-block .display{max-width:16ch;margin:0 auto 24px}
     section.cta-block p{color:var(--ink-2);font-size:17px;max-width:44ch;margin:0 auto 30px}
     section.cta-block .links{display:inline-flex;flex-wrap:wrap;justify-content:center;
-      gap:20px;font-size:15px}
+      gap:16px;font-size:15px;align-items:center}
     section.cta-block .links .sep{color:var(--line-2)}
 
-    /* ─── CTA call button ─── */
+    /* ─── Buttons ─── */
     .btn-call{display:inline-flex;align-items:center;gap:10px;
       background:var(--ink);color:#fff;text-decoration:none;
       padding:14px 28px;border-radius:2px;font-size:15px;letter-spacing:.02em;
       transition:background .2s}
     .btn-call:hover{background:var(--ink-2)}
+    .btn-reserve-outline{display:inline-flex;align-items:center;gap:10px;
+      background:transparent;color:var(--ink);text-decoration:none;
+      padding:13px 27px;border-radius:2px;font-size:15px;letter-spacing:.02em;
+      border:1px solid var(--ink);transition:background .2s,color .2s}
+    .btn-reserve-outline:hover{background:var(--ink);color:#fff}
+
+    /* ─── Reservation section ─── */
+    section.reservation{padding:120px 0;border-bottom:1px solid var(--line)}
+    section.reservation .container{display:grid;grid-template-columns:1fr 1.25fr;
+      gap:80px;align-items:start}
+    section.reservation .res-text .kicker{display:block;margin-bottom:18px}
+    section.reservation .res-text .section-title{margin-bottom:22px}
+    section.reservation .res-text .lead{margin-bottom:0}
+    section.reservation .res-info{margin-top:36px;padding-top:28px;
+      border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:20px 32px}
+    section.reservation .ri-item .ri-lbl{font-size:11px;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--ink-mute)}
+    section.reservation .ri-item .ri-val{font-family:"Instrument Serif",serif;
+      font-size:20px;letter-spacing:-.01em;margin-top:4px}
+    section.reservation .ri-item .ri-val em{font-style:italic}
+
+    /* ─── Reservation form card ─── */
+    .res-form-wrap{background:#fff;border:1px solid var(--line);border-radius:2px;
+      padding:44px 40px}
+    .res-form-wrap h3{font-family:"Instrument Serif",serif;font-size:28px;font-weight:400;
+      letter-spacing:-.01em;margin:0 0 28px}
+    .res-form-wrap h3 em{font-style:italic}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .form-field{display:flex;flex-direction:column;gap:7px}
+    .form-field.full{grid-column:1/-1}
+    .form-field label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--ink-mute);font-weight:500}
+    .form-field input,
+    .form-field select,
+    .form-field textarea{
+      width:100%;padding:13px 15px;
+      border:1px solid var(--line-2);border-radius:2px;
+      font-family:"DM Sans",system-ui,sans-serif;font-size:15px;
+      color:var(--ink);background:#fff;
+      transition:border-color .18s,box-shadow .18s;
+      outline:none;-webkit-appearance:none;appearance:none}
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus{
+      border-color:var(--ink);
+      box-shadow:0 0 0 3px rgba(20,19,15,.07)}
+    .form-field input::placeholder,
+    .form-field textarea::placeholder{color:var(--ink-mute)}
+    .form-field textarea{resize:vertical;min-height:100px;line-height:1.55}
+    .form-field select{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%2375726a' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;
+      padding-right:38px;cursor:pointer}
+    .form-submit-row{margin-top:22px}
+    .btn-submit{width:100%;padding:16px 24px;background:var(--ink);color:#fff;
+      border:none;border-radius:2px;
+      font-family:"DM Sans",system-ui,sans-serif;font-size:15px;letter-spacing:.04em;
+      cursor:pointer;transition:background .2s;display:flex;align-items:center;
+      justify-content:center;gap:10px}
+    .btn-submit:hover:not(:disabled){background:var(--ink-2)}
+    .btn-submit:disabled{background:var(--ink-mute);cursor:not-allowed}
+    .form-note{margin-top:14px;font-size:12.5px;color:var(--ink-mute);
+      text-align:center;line-height:1.55}
+
+    /* ─── Form success state ─── */
+    .form-success{display:none;text-align:center;padding:48px 20px}
+    .form-success .success-mark{width:48px;height:48px;border-radius:50%;
+      background:var(--ink);display:flex;align-items:center;justify-content:center;
+      margin:0 auto 20px}
+    .form-success .success-mark svg{width:22px;height:22px}
+    .form-success h3{font-family:"Instrument Serif",serif;font-size:30px;font-weight:400;
+      letter-spacing:-.01em;margin:0 0 12px}
+    .form-success h3 em{font-style:italic}
+    .form-success p{color:var(--ink-mute);font-size:15px;margin:0;line-height:1.65}
 
     /* ─── Footer ─── */
     footer.site{padding:80px 0 40px;font-size:14px;color:var(--ink-2)}
@@ -248,7 +331,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ─── Responsive ─── */
     @media (max-width:900px){
       section.edit .container,section.menu .menu-head,
-      section.info .head,section.location .container{grid-template-columns:1fr;gap:40px}
+      section.info .head,section.location .container,
+      section.reservation .container{grid-template-columns:1fr;gap:40px}
       section.edit.reverse .container > .text{order:1}
       section.edit.reverse .container > .image{order:2}
       section.edit .image img{aspect-ratio:4/3}
@@ -258,10 +342,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       footer.site .container{grid-template-columns:1fr 1fr}
       .site-header .inner{grid-template-columns:auto auto}
       .primary-nav{display:none}
+      .res-form-wrap{padding:32px 24px}
+      .form-grid{grid-template-columns:1fr}
+      section.reservation .res-info{grid-template-columns:1fr 1fr}
     }
   </style>
 </head>
 <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TB693V9F"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- ─────────────────────────  HEADER  ───────────────────────── -->
 <header class="site-header">
@@ -273,6 +365,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <a href="#aperitivi">Aperitivi</a>
       <a href="#karte"><span lang="de">Karte</span><span lang="it">Menù</span></a>
       <a href="#standort"><span lang="de">Standort</span><span lang="it">Dove siamo</span></a>
+      <a href="#reservieren" class="nav-reserve"><span lang="de">Reservieren</span><span lang="it">Prenota</span></a>
     </nav>
     <div class="header-right">
       <span class="status-pill" id="statusPill">
@@ -313,7 +406,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <span class="sep">·</span>
       <a href="#standort"><span lang="de">Öffnungszeiten</span><span lang="it">Orari</span></a>
       <span class="sep">·</span>
-      <a href="tel:+393762800929"><span lang="de">Vorbestellen ↗</span><span lang="it">Prenota ↗</span></a>
+      <a href="#reservieren" class="hero-reserve">
+        <span lang="de">Tisch reservieren ↓</span><span lang="it">Prenota un tavolo ↓</span>
+      </a>
     </div>
   </div>
 </section>
@@ -528,55 +623,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h3><span lang="de">Frühstück</span><span lang="it">Colazione</span></h3>
           <span class="time">07 – 11</span>
         </div>
-
         <div class="menu-row">
           <div>
-            <div class="name">Uovo in Camicia con Avocado e Salmone
-              <span class="allergen">1,3,7</span>
-            </div>
-            <div class="desc">
-              <span lang="de">Servito con pane, pomodori e cetrioli.</span>
-              <span lang="it">Servito con pane, pomodori e cetrioli.</span>
-            </div>
+            <div class="name">Uovo in Camicia con Avocado e Salmone<span class="allergen">1,3,7</span></div>
+            <div class="desc"><span lang="de">Servito con pane, pomodori e cetrioli.</span><span lang="it">Servito con pane, pomodori e cetrioli.</span></div>
           </div>
           <div class="price">€ 14,–</div>
         </div>
-
         <div class="menu-row">
           <div>
-            <div class="name">Pancakes 4pz
-              <span class="allergen">1,3,6,8,7</span>
-            </div>
-            <div class="desc">
-              <span lang="de">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
-              <span lang="it">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
-            </div>
+            <div class="name">Pancakes 4pz<span class="allergen">1,3,6,8,7</span></div>
+            <div class="desc"><span lang="de">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span><span lang="it">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span></div>
           </div>
           <div class="price">€ 10,–</div>
         </div>
-
         <div class="menu-row">
           <div>
-            <div class="name">French Toast 2pz
-              <span class="allergen">1,3,6,8,7</span>
-            </div>
-            <div class="desc">
-              <span lang="de">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
-              <span lang="it">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span>
-            </div>
+            <div class="name">French Toast 2pz<span class="allergen">1,3,6,8,7</span></div>
+            <div class="desc"><span lang="de">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span><span lang="it">Scegli il topping: Maple Syrup · Nutella · Marmellata alle fragole</span></div>
           </div>
           <div class="price">€ 11,–</div>
         </div>
-
         <div class="menu-row">
           <div>
-            <div class="name">Colazione Tradizionale
-              <span class="allergen">1,7</span>
-            </div>
-            <div class="desc">
-              <span lang="de">Cestino di pane, marmellata e burro.</span>
-              <span lang="it">Cestino di pane, marmellata e burro.</span>
-            </div>
+            <div class="name">Colazione Tradizionale<span class="allergen">1,7</span></div>
+            <div class="desc"><span lang="de">Cestino di pane, marmellata e burro.</span><span lang="it">Cestino di pane, marmellata e burro.</span></div>
           </div>
           <div class="price">€ 8,–</div>
         </div>
@@ -588,7 +659,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h3>Centrifughe</h3>
           <span class="time">07 – 19</span>
         </div>
-
         <div class="menu-row">
           <div>
             <div class="name">La Dolce Vita</div>
@@ -596,7 +666,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
           <div class="price">€ 6,–</div>
         </div>
-
         <div class="menu-row">
           <div>
             <div class="name">Bella Detox</div>
@@ -604,7 +673,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
           <div class="price">€ 6,–</div>
         </div>
-
         <div class="menu-row">
           <div>
             <div class="name">Energy Boost</div>
@@ -618,74 +686,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="menu-cat" data-cat="pin">
         <div class="menu-cat-heading">
           <h3>Pinzeria</h3>
-          <span class="menu-deal">
-            <span lang="de">Menu Pinza 14 € · Insalatina + Pinza + Bevanda + Caffè</span>
-            <span lang="it">Menù Pinza 14 € · Insalatina + Pinza + Bevanda + Caffè</span>
-          </span>
+          <span class="menu-deal"><span lang="de">Menu Pinza 14 € · Insalatina + Pinza + Bevanda + Caffè</span><span lang="it">Menù Pinza 14 € · Insalatina + Pinza + Bevanda + Caffè</span></span>
           <span class="time">11 – 19</span>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Margherita <span class="allergen">1,7</span></div>
-            <div class="desc">Mozzarella, pomodoro e basilico.</div>
-          </div>
+          <div><div class="name">Margherita<span class="allergen">1,7</span></div><div class="desc">Mozzarella, pomodoro e basilico.</div></div>
           <div class="price">€ 7,–</div>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Prosciutto Cotto <span class="allergen">1,7,12</span></div>
-            <div class="desc">Mozzarella, pomodoro e prosciutto cotto.</div>
-          </div>
+          <div><div class="name">Prosciutto Cotto<span class="allergen">1,7,12</span></div><div class="desc">Mozzarella, pomodoro e prosciutto cotto.</div></div>
           <div class="price">€ 9,–</div>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Speck <span class="allergen">1,7,12</span></div>
-            <div class="desc">Mozzarella, pomodoro e speck.</div>
-          </div>
+          <div><div class="name">Speck<span class="allergen">1,7,12</span></div><div class="desc">Mozzarella, pomodoro e speck.</div></div>
           <div class="price">€ 9,–</div>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Diavola <span class="allergen">1,7</span></div>
-            <div class="desc">Mozzarella, pomodoro, salame piccante e peperoni.</div>
-          </div>
+          <div><div class="name">Diavola<span class="allergen">1,7</span></div><div class="desc">Mozzarella, pomodoro, salame piccante e peperoni.</div></div>
           <div class="price">€ 9,–</div>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Primavera <span class="allergen">1,7</span></div>
-            <div class="desc">Mozzarella, datterini, rucola e scaglie di grana.</div>
-          </div>
+          <div><div class="name">Primavera<span class="allergen">1,7</span></div><div class="desc">Mozzarella, datterini, rucola e scaglie di grana.</div></div>
           <div class="price">€ 9,–</div>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Vegetariana <span class="allergen">1,7</span></div>
-            <div class="desc">Mozzarella, pomodori, zucchini, peperoni e melanzane.</div>
-          </div>
+          <div><div class="name">Vegetariana<span class="allergen">1,7</span></div><div class="desc">Mozzarella, pomodori, zucchini, peperoni e melanzane.</div></div>
           <div class="price">€ 9,–</div>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Mortadella <span class="allergen">1,7,8</span></div>
-            <div class="desc">Mozzarella, pomodori freschi, mortadella e pistacchio.</div>
-          </div>
+          <div><div class="name">Mortadella<span class="allergen">1,7,8</span></div><div class="desc">Mozzarella, pomodori freschi, mortadella e pistacchio.</div></div>
           <div class="price">€ 11,–</div>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Tonno e Mais <span class="allergen">1,7</span></div>
-            <div class="desc">Mozzarella, pomodori freschi, tonno e mais.</div>
-          </div>
+          <div><div class="name">Tonno e Mais<span class="allergen">1,7</span></div><div class="desc">Mozzarella, pomodori freschi, tonno e mais.</div></div>
           <div class="price">€ 9,–</div>
         </div>
       </div>
@@ -696,17 +729,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h3>Insalate</h3>
           <span class="time">11 – 19</span>
         </div>
-
         <div class="menu-row">
-          <div>
-            <div class="name">Insalatina Piccola Mista</div>
-          </div>
+          <div><div class="name">Insalatina Piccola Mista</div></div>
           <div class="price">€ 5,–</div>
         </div>
-
         <div class="menu-row">
           <div>
-            <div class="name">Insalatona Vicino <span class="allergen">1,7,8</span></div>
+            <div class="name">Insalatona Vicino<span class="allergen">1,7,8</span></div>
             <div class="desc">Insalata verde, datterini, cetrioli, radicchio, mais, tonno, mozzarella e pistacchio — con vinaigrette fatta in casa e pane.</div>
           </div>
           <div class="price">€ 13,–</div>
@@ -717,55 +746,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="menu-cat" data-cat="aper">
         <div class="menu-cat-heading">
           <h3>Aperitivi</h3>
-          <span class="menu-deal">
-            <span lang="de">Menu Aperitivo 12 € · 2 Aperitivi + Stuzzichini</span>
-            <span lang="it">Menù Aperitivo 12 € · 2 aperitivi + stuzzichini</span>
-          </span>
+          <span class="menu-deal"><span lang="de">Menu Aperitivo 12 € · 2 Aperitivi + Stuzzichini</span><span lang="it">Menù Aperitivo 12 € · 2 aperitivi + stuzzichini</span></span>
           <span class="time">11 – 19</span>
         </div>
-
-        <div class="menu-row">
-          <div><div class="name">Spritz Aperol</div></div>
-          <div class="price">€ 4,–</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Spritz Campari</div></div>
-          <div class="price">€ 4,–</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Hugo</div></div>
-          <div class="price">€ 4,–</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Berry Fitz</div></div>
-          <div class="price">€ 4,–</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Lillet Spritz</div></div>
-          <div class="price">€ 5,–</div>
-        </div>
+        <div class="menu-row"><div><div class="name">Spritz Aperol</div></div><div class="price">€ 4,–</div></div>
+        <div class="menu-row"><div><div class="name">Spritz Campari</div></div><div class="price">€ 4,–</div></div>
+        <div class="menu-row"><div><div class="name">Hugo</div></div><div class="price">€ 4,–</div></div>
+        <div class="menu-row"><div><div class="name">Berry Fitz</div></div><div class="price">€ 4,–</div></div>
+        <div class="menu-row"><div><div class="name">Lillet Spritz</div></div><div class="price">€ 5,–</div></div>
         <div class="menu-row">
           <div>
             <div class="name">Vicino Spritz</div>
-            <div class="desc"><span lang="de">Unser Hausaperitivio.</span><span lang="it">Il nostro aperitivo della casa.</span></div>
+            <div class="desc"><span lang="de">Unser Hausaperitivo.</span><span lang="it">Il nostro aperitivo della casa.</span></div>
           </div>
           <div class="price">€ 4,50</div>
         </div>
-        <div class="menu-row">
-          <div>
-            <div class="name">Prosecco</div>
-            <div class="desc">0,1 L</div>
-          </div>
-          <div class="price">€ 3,–</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Americano</div></div>
-          <div class="price">€ 7,–</div>
-        </div>
-        <div class="menu-row">
-          <div><div class="name">Negroni</div></div>
-          <div class="price">€ 7,–</div>
-        </div>
+        <div class="menu-row"><div><div class="name">Prosecco</div><div class="desc">0,1 L</div></div><div class="price">€ 3,–</div></div>
+        <div class="menu-row"><div><div class="name">Americano</div></div><div class="price">€ 7,–</div></div>
+        <div class="menu-row"><div><div class="name">Negroni</div></div><div class="price">€ 7,–</div></div>
       </div>
 
       <!-- ── Strudel ── -->
@@ -774,25 +772,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <h3>Strudel</h3>
           <span class="time">07 – 19</span>
         </div>
-
         <div class="menu-row">
           <div>
-            <div class="name">Strudel fatto in casa <span class="allergen">1,3,7</span></div>
+            <div class="name">Strudel fatto in casa<span class="allergen">1,3,7</span></div>
             <div class="desc">
-              <span lang="de">Hausgemacht — +Panna <span class="allergen">1</span> +1 €</span>
-              <span lang="it">Fatto in casa — +Panna <span class="allergen">1</span> +1 €</span>
+              <span lang="de">Hausgemacht — +Panna<span class="allergen">1</span> +1 €</span>
+              <span lang="it">Fatto in casa — +Panna<span class="allergen">1</span> +1 €</span>
             </div>
           </div>
           <div class="price">€ 4,50</div>
         </div>
       </div>
 
-      <!-- Allergen note -->
       <div class="allergen-note">
         <span lang="de"><strong>Allergene:</strong> 1 Gluten · 3 Eier · 6 Schalenfrüchte · 7 Milch/Laktose · 8 Sesam · 12 Sulfite — Vollständige Allergeninformationen auf Anfrage.</span>
         <span lang="it"><strong>Allergeni:</strong> 1 Glutine · 3 Uova · 6 Frutta a guscio · 7 Latte/Lattosio · 8 Sesamo · 12 Solfiti — Informazioni complete sugli allergeni disponibili su richiesta.</span>
       </div>
-
     </div>
   </div>
 </section>
@@ -811,84 +806,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="grid">
       <div class="cell">
-        <div>
-          <div class="lbl"><span lang="de">Öffnungszeiten</span><span lang="it">Orari</span></div>
-          <div class="val"><span lang="de">Mo – Fr</span><span lang="it">Lun – Ven</span></div>
-        </div>
-        <div class="desc">
-          <span lang="de">07:00 – 19:00 Uhr. Sa &amp; So geschlossen.</span>
-          <span lang="it">07:00 – 19:00. Sab &amp; Dom chiuso.</span>
-        </div>
+        <div><div class="lbl"><span lang="de">Öffnungszeiten</span><span lang="it">Orari</span></div><div class="val"><span lang="de">Mo – Fr</span><span lang="it">Lun – Ven</span></div></div>
+        <div class="desc"><span lang="de">07:00 – 19:00 Uhr. Sa &amp; So geschlossen.</span><span lang="it">07:00 – 19:00. Sab &amp; Dom chiuso.</span></div>
       </div>
       <div class="cell">
-        <div>
-          <div class="lbl"><span lang="de">Frühstück</span><span lang="it">Colazione</span></div>
-          <div class="val">07 – 11</div>
-        </div>
-        <div class="desc">
-          <span lang="de">Pancakes, French Toast, Uova, Colazione Tradizionale. Ab 8 €.</span>
-          <span lang="it">Pancakes, French Toast, Uova, Colazione tradizionale. Da 8 €.</span>
-        </div>
+        <div><div class="lbl"><span lang="de">Frühstück</span><span lang="it">Colazione</span></div><div class="val">07 – 11</div></div>
+        <div class="desc"><span lang="de">Pancakes, French Toast, Uova, Colazione Tradizionale. Ab 8 €.</span><span lang="it">Pancakes, French Toast, Uova, Colazione tradizionale. Da 8 €.</span></div>
       </div>
       <div class="cell">
-        <div>
-          <div class="lbl">Pinzeria</div>
-          <div class="val">11 – 19</div>
-        </div>
-        <div class="desc">
-          <span lang="de">8 Pinze aus dem Ofen. Menu Pinza (Insalatina + Pinza + Bevanda + Caffè) 14 €.</span>
-          <span lang="it">8 pinze dal forno. Menù Pinza (insalatina + pinza + bevanda + caffè) 14 €.</span>
-        </div>
+        <div><div class="lbl">Pinzeria</div><div class="val">11 – 19</div></div>
+        <div class="desc"><span lang="de">8 Pinze aus dem Ofen. Menu Pinza (Insalatina + Pinza + Bevanda + Caffè) 14 €.</span><span lang="it">8 pinze dal forno. Menù Pinza (insalatina + pinza + bevanda + caffè) 14 €.</span></div>
       </div>
       <div class="cell">
-        <div>
-          <div class="lbl">Aperitivi</div>
-          <div class="val">11 – 19</div>
-        </div>
-        <div class="desc">
-          <span lang="de">9 Variationen. Menu Aperitivo: 2 Drinks + Stuzzichini für 12 €.</span>
-          <span lang="it">9 variazioni. Menù Aperitivo: 2 drink + stuzzichini per 12 €.</span>
-        </div>
+        <div><div class="lbl">Aperitivi</div><div class="val">11 – 19</div></div>
+        <div class="desc"><span lang="de">9 Variationen. Menu Aperitivo: 2 Drinks + Stuzzichini für 12 €.</span><span lang="it">9 variazioni. Menù Aperitivo: 2 drink + stuzzichini per 12 €.</span></div>
       </div>
       <div class="cell">
-        <div>
-          <div class="lbl"><span lang="de">Zum Mitnehmen</span><span lang="it">Asporto</span></div>
-          <div class="val"><span lang="de">Immer</span><span lang="it">Sempre</span></div>
-        </div>
-        <div class="desc">
-          <span lang="de">Alles to-go. Vorbestellung per Telefon möglich.</span>
-          <span lang="it">Tutto da asporto. Preordine telefonico.</span>
-        </div>
+        <div><div class="lbl"><span lang="de">Zum Mitnehmen</span><span lang="it">Asporto</span></div><div class="val"><span lang="de">Immer</span><span lang="it">Sempre</span></div></div>
+        <div class="desc"><span lang="de">Alles to-go. Vorbestellung per Telefon möglich.</span><span lang="it">Tutto da asporto. Preordine telefonico.</span></div>
       </div>
       <div class="cell">
-        <div>
-          <div class="lbl"><span lang="de">Bezahlen</span><span lang="it">Pagamenti</span></div>
-          <div class="val">
-            <span lang="de">Karte &amp; <em>Cash</em></span>
-            <span lang="it">Carta &amp; <em>contanti</em></span>
-          </div>
-        </div>
+        <div><div class="lbl"><span lang="de">Bezahlen</span><span lang="it">Pagamenti</span></div><div class="val"><span lang="de">Karte &amp; <em>Cash</em></span><span lang="it">Carta &amp; <em>contanti</em></span></div></div>
         <div class="desc">Visa, Mastercard, Bancomat, Apple Pay.</div>
       </div>
       <div class="cell">
-        <div>
-          <div class="lbl"><span lang="de">Mit Hund</span><span lang="it">Cani</span></div>
-          <div class="val"><span lang="de">Willkommen</span><span lang="it">Benvenuti</span></div>
-        </div>
-        <div class="desc">
-          <span lang="de">Draußen und drinnen. Wassernapf an der Tür.</span>
-          <span lang="it">Dentro e fuori. Ciotola d'acqua alla porta.</span>
-        </div>
+        <div><div class="lbl"><span lang="de">Mit Hund</span><span lang="it">Cani</span></div><div class="val"><span lang="de">Willkommen</span><span lang="it">Benvenuti</span></div></div>
+        <div class="desc"><span lang="de">Draußen und drinnen. Wassernapf an der Tür.</span><span lang="it">Dentro e fuori. Ciotola d'acqua alla porta.</span></div>
       </div>
       <div class="cell">
-        <div>
-          <div class="lbl"><span lang="de">Sprachen</span><span lang="it">Lingue</span></div>
-          <div class="val"><span lang="de">DE · IT · EN</span><span lang="it">IT · DE · EN</span></div>
-        </div>
-        <div class="desc">
-          <span lang="de">Wir sprechen alle drei. Nur fragen.</span>
-          <span lang="it">Le parliamo tutte e tre. Basta chiedere.</span>
-        </div>
+        <div><div class="lbl"><span lang="de">Sprachen</span><span lang="it">Lingue</span></div><div class="val"><span lang="de">DE · IT · EN</span><span lang="it">IT · DE · EN</span></div></div>
+        <div class="desc"><span lang="de">Wir sprechen alle drei. Nur fragen.</span><span lang="it">Le parliamo tutte e tre. Basta chiedere.</span></div>
       </div>
     </div>
   </div>
@@ -908,87 +855,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span lang="de">39100 Bozen, Südtirol · Italien<br>Neben dem Waltherpark, gegenüber dem Bahnhof.</span>
         <span lang="it">39100 Bolzano, Alto Adige · Italia<br>Accanto al Waltherpark, di fronte alla stazione.</span>
       </div>
-
       <div class="hours" id="hoursGrid">
-        <span class="d" data-day="0"><span lang="de">Mo</span><span lang="it">Lun</span></span>
-        <span class="t" data-day="0">07:00 – 19:00</span>
-        <span class="d" data-day="1"><span lang="de">Di</span><span lang="it">Mar</span></span>
-        <span class="t" data-day="1">07:00 – 19:00</span>
-        <span class="d" data-day="2"><span lang="de">Mi</span><span lang="it">Mer</span></span>
-        <span class="t" data-day="2">07:00 – 19:00</span>
-        <span class="d" data-day="3"><span lang="de">Do</span><span lang="it">Gio</span></span>
-        <span class="t" data-day="3">07:00 – 19:00</span>
-        <span class="d" data-day="4"><span lang="de">Fr</span><span lang="it">Ven</span></span>
-        <span class="t" data-day="4">07:00 – 19:00</span>
-        <span class="d" data-day="5"><span lang="de">Sa</span><span lang="it">Sab</span></span>
-        <span class="t closed" data-day="5"><span lang="de">geschlossen</span><span lang="it">chiuso</span></span>
-        <span class="d" data-day="6"><span lang="de">So</span><span lang="it">Dom</span></span>
-        <span class="t closed" data-day="6"><span lang="de">geschlossen</span><span lang="it">chiuso</span></span>
+        <span class="d" data-day="0"><span lang="de">Mo</span><span lang="it">Lun</span></span><span class="t" data-day="0">07:00 – 19:00</span>
+        <span class="d" data-day="1"><span lang="de">Di</span><span lang="it">Mar</span></span><span class="t" data-day="1">07:00 – 19:00</span>
+        <span class="d" data-day="2"><span lang="de">Mi</span><span lang="it">Mer</span></span><span class="t" data-day="2">07:00 – 19:00</span>
+        <span class="d" data-day="3"><span lang="de">Do</span><span lang="it">Gio</span></span><span class="t" data-day="3">07:00 – 19:00</span>
+        <span class="d" data-day="4"><span lang="de">Fr</span><span lang="it">Ven</span></span><span class="t" data-day="4">07:00 – 19:00</span>
+        <span class="d" data-day="5"><span lang="de">Sa</span><span lang="it">Sab</span></span><span class="t closed" data-day="5"><span lang="de">geschlossen</span><span lang="it">chiuso</span></span>
+        <span class="d" data-day="6"><span lang="de">So</span><span lang="it">Dom</span></span><span class="t closed" data-day="6"><span lang="de">geschlossen</span><span lang="it">chiuso</span></span>
       </div>
-
       <div class="location-links">
-        <a class="link-arrow" href="https://maps.google.com/?q=Piazza+Walther+Bolzano" target="_blank" rel="noopener">
-          <span lang="de">Google Maps ↗</span>
-          <span lang="it">Google Maps ↗</span>
-        </a>
+        <a class="link-arrow" href="https://maps.google.com/?q=Piazza+Walther+Bolzano" target="_blank" rel="noopener"><span lang="de">Google Maps ↗</span><span lang="it">Google Maps ↗</span></a>
         <a class="link-arrow" href="tel:+393762800929">+39 376 280 0929</a>
         <a class="link-arrow" href="mailto:info@rafenstein.it">info@rafenstein.it</a>
       </div>
     </div>
-
     <div class="map">
       <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(20,19,15,.04)" stroke-width="1"/>
-          </pattern>
-        </defs>
+        <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(20,19,15,.04)" stroke-width="1"/></pattern></defs>
         <rect width="600" height="460" fill="#f5f3ee"/>
         <rect width="600" height="460" fill="url(#grid)"/>
         <g stroke="#e0dccc" stroke-width="34" stroke-linecap="round" fill="none">
-          <path d="M -20 110 Q 200 130 620 100"/>
-          <path d="M -20 360 Q 280 380 620 330"/>
-          <path d="M 120 -20 L 90 480"/>
-          <path d="M 470 -20 L 500 480"/>
-          <path d="M -20 230 L 620 240"/>
+          <path d="M -20 110 Q 200 130 620 100"/><path d="M -20 360 Q 280 380 620 330"/>
+          <path d="M 120 -20 L 90 480"/><path d="M 470 -20 L 500 480"/><path d="M -20 230 L 620 240"/>
         </g>
         <g stroke="#fff" stroke-width="1.2" stroke-dasharray="6 6" fill="none">
-          <path d="M -20 110 Q 200 130 620 100"/>
-          <path d="M -20 360 Q 280 380 620 330"/>
-          <path d="M 120 -20 L 90 480"/>
-          <path d="M 470 -20 L 500 480"/>
+          <path d="M -20 110 Q 200 130 620 100"/><path d="M -20 360 Q 280 380 620 330"/>
+          <path d="M 120 -20 L 90 480"/><path d="M 470 -20 L 500 480"/>
         </g>
         <rect x="200" y="155" width="180" height="120" rx="6" fill="#cfd7c0"/>
         <g fill="#a5b48a" opacity="0.7">
-          <circle cx="225" cy="180" r="10"/><circle cx="255" cy="195" r="12"/>
-          <circle cx="290" cy="175" r="11"/><circle cx="330" cy="195" r="13"/>
-          <circle cx="360" cy="180" r="10"/><circle cx="240" cy="240" r="11"/>
+          <circle cx="225" cy="180" r="10"/><circle cx="255" cy="195" r="12"/><circle cx="290" cy="175" r="11"/>
+          <circle cx="330" cy="195" r="13"/><circle cx="360" cy="180" r="10"/><circle cx="240" cy="240" r="11"/>
           <circle cx="290" cy="245" r="14"/><circle cx="340" cy="240" r="12"/>
         </g>
-        <text x="290" y="220" text-anchor="middle" font-family="DM Sans, sans-serif"
-          font-size="13" letter-spacing="1.4" fill="#5d6b48" font-weight="500">WALTHERPARK</text>
+        <text x="290" y="220" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" letter-spacing="1.4" fill="#5d6b48" font-weight="500">WALTHERPARK</text>
         <rect x="395" y="180" width="60" height="48" fill="#14130f"/>
         <g fill="#e6e2d8">
-          <rect x="20" y="50" width="80" height="55"/><rect x="20" y="155" width="80" height="65"/>
-          <rect x="20" y="265" width="80" height="80"/><rect x="510" y="40" width="70" height="55"/>
-          <rect x="510" y="150" width="70" height="60"/><rect x="510" y="265" width="70" height="55"/>
-          <rect x="510" y="365" width="70" height="50"/><rect x="155" y="50" width="65" height="45"/>
-          <rect x="240" y="40" width="100" height="55"/><rect x="360" y="50" width="80" height="45"/>
-          <rect x="155" y="290" width="80" height="55"/><rect x="260" y="295" width="90" height="50"/>
-          <rect x="380" y="290" width="80" height="55"/><rect x="155" y="385" width="90" height="55"/>
-          <rect x="280" y="395" width="80" height="50"/><rect x="395" y="385" width="80" height="55"/>
+          <rect x="20" y="50" width="80" height="55"/><rect x="20" y="155" width="80" height="65"/><rect x="20" y="265" width="80" height="80"/>
+          <rect x="510" y="40" width="70" height="55"/><rect x="510" y="150" width="70" height="60"/><rect x="510" y="265" width="70" height="55"/><rect x="510" y="365" width="70" height="50"/>
+          <rect x="155" y="50" width="65" height="45"/><rect x="240" y="40" width="100" height="55"/><rect x="360" y="50" width="80" height="45"/>
+          <rect x="155" y="290" width="80" height="55"/><rect x="260" y="295" width="90" height="50"/><rect x="380" y="290" width="80" height="55"/>
+          <rect x="155" y="385" width="90" height="55"/><rect x="280" y="395" width="80" height="50"/><rect x="395" y="385" width="80" height="55"/>
         </g>
-        <text x="290" y="120" text-anchor="middle" font-family="Instrument Serif, serif"
-          font-size="16" font-style="italic" fill="#75726a">Piazza Walther</text>
-        <g transform="translate(425,204)">
-          <circle r="22" fill="#14130f" opacity="0.12"/>
-          <circle r="14" fill="#14130f"/>
-          <circle r="4" fill="#fff"/>
-        </g>
-        <text x="425" y="170" text-anchor="middle" font-family="Instrument Serif, serif"
-          font-style="italic" font-size="18" fill="#14130f">Vicino</text>
-        <text x="60" y="430" font-family="DM Sans, sans-serif" font-size="11"
-          letter-spacing="1.2" fill="#a8a496">→ STAZIONE / BHF</text>
+        <text x="290" y="120" text-anchor="middle" font-family="Instrument Serif, serif" font-size="16" font-style="italic" fill="#75726a">Piazza Walther</text>
+        <g transform="translate(425,204)"><circle r="22" fill="#14130f" opacity="0.12"/><circle r="14" fill="#14130f"/><circle r="4" fill="#fff"/></g>
+        <text x="425" y="170" text-anchor="middle" font-family="Instrument Serif, serif" font-style="italic" font-size="18" fill="#14130f">Vicino</text>
+        <text x="60" y="430" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="1.2" fill="#a8a496">→ STAZIONE / BHF</text>
       </svg>
     </div>
   </div>
@@ -1002,12 +915,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <span lang="it">Passa<br><em>a trovarci.</em></span>
     </h2>
     <p>
-      <span lang="de">Kein Tisch nötig — einfach reinkommen. Für to-go oder wenn's eilig ist, kurz anrufen. Wir bereiten alles vor.</span>
-      <span lang="it">Nessuna prenotazione necessaria — entra e siediti. Per l'asporto o se hai fretta, chiama. Prepariamo tutto.</span>
+      <span lang="de">Kein Tisch nötig — einfach reinkommen. Oder Platz reservieren und in Ruhe genießen.</span>
+      <span lang="it">Nessuna prenotazione obbligatoria — entra e siediti. O prenota un tavolo e goditi la pausa.</span>
     </p>
     <div class="links">
       <a class="btn-call" href="tel:+393762800929">
         <span lang="de">↗ Jetzt anrufen</span><span lang="it">↗ Chiama ora</span>
+      </a>
+      <a class="btn-reserve-outline" href="#reservieren">
+        <span lang="de">Tisch reservieren</span><span lang="it">Prenota un tavolo</span>
       </a>
       <span class="sep">·</span>
       <a class="link-arrow" href="https://maps.google.com/?q=Piazza+Walther+Bolzano" target="_blank" rel="noopener">
@@ -1016,6 +932,161 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <span class="sep">·</span>
       <a class="link-arrow" href="https://www.instagram.com/bistrovicino" target="_blank" rel="noopener">Instagram ↗</a>
     </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  RESERVIERUNG  ───────────────────────── -->
+<section class="reservation" id="reservieren">
+  <div class="container">
+
+    <!-- Text left -->
+    <div class="res-text">
+      <span class="kicker"><span lang="de">Tischreservierung</span><span lang="it">Prenotazione tavolo</span></span>
+      <h2 class="section-title" style="margin-top:14px">
+        <span lang="de">Einen Platz<br><em>reservieren.</em></span>
+        <span lang="it">Prenota<br><em>il tuo tavolo.</em></span>
+      </h2>
+      <p class="lead" style="margin-top:22px">
+        <span lang="de">Füllen Sie das Formular aus — wir bestätigen Ihre Reservierung per E-Mail oder Telefon innerhalb weniger Stunden.</span>
+        <span lang="it">Compila il modulo — ti confermeremo la prenotazione via email o telefono entro poche ore.</span>
+      </p>
+      <div class="res-info">
+        <div class="ri-item">
+          <div class="ri-lbl"><span lang="de">Öffnungszeiten</span><span lang="it">Orari</span></div>
+          <div class="ri-val"><span lang="de">Mo – Fr</span><span lang="it">Lun – Ven</span></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-lbl"><span lang="de">Täglich</span><span lang="it">Ogni giorno</span></div>
+          <div class="ri-val">07 – 19</div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-lbl"><span lang="de">Telefon</span><span lang="it">Telefono</span></div>
+          <div class="ri-val"><a href="tel:+393762800929" style="text-decoration:none">+39 376 280 0929</a></div>
+        </div>
+        <div class="ri-item">
+          <div class="ri-lbl"><span lang="de">E-Mail</span><span lang="it">Email</span></div>
+          <div class="ri-val"><a href="mailto:info@rafenstein.it" style="text-decoration:none;font-size:16px">info@rafenstein.it</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form right -->
+    <div class="res-form-wrap">
+      <h3><span lang="de">Ihre <em>Anfrage</em></span><span lang="it">La vostra <em>richiesta</em></span></h3>
+
+      <!-- Success state (hidden until submit) -->
+      <div class="form-success" id="formSuccess">
+        <div class="success-mark">
+          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 11.5l5 5 9-9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3><span lang="de">Anfrage <em>gesendet!</em></span><span lang="it">Richiesta <em>inviata!</em></span></h3>
+        <p>
+          <span lang="de">Vielen Dank — wir melden uns bald bei Ihnen zur Bestätigung.</span>
+          <span lang="it">Grazie mille — vi contatteremo presto per la conferma.</span>
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form id="reserveForm" action="https://formspree.io/f/xqejvyaa" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Neue Tischreservierung — Bistro Vicino">
+
+        <div class="form-grid">
+
+          <!-- Name -->
+          <div class="form-field full">
+            <label for="res-name"><span lang="de">Name *</span><span lang="it">Nome *</span></label>
+            <input type="text" id="res-name" name="name"
+              placeholder="Vor- und Nachname"
+              required autocomplete="name">
+          </div>
+
+          <!-- Tag -->
+          <div class="form-field">
+            <label for="res-date"><span lang="de">Tag *</span><span lang="it">Data *</span></label>
+            <input type="date" id="res-date" name="tag" required>
+          </div>
+
+          <!-- Uhrzeit -->
+          <div class="form-field">
+            <label for="res-time"><span lang="de">Uhrzeit *</span><span lang="it">Orario *</span></label>
+            <select id="res-time" name="uhrzeit" required>
+              <option value="" disabled selected>
+                <span lang="de">Bitte wählen</span><span lang="it">Seleziona</span>
+              </option>
+              <option value="07:00">07:00</option>
+              <option value="07:30">07:30</option>
+              <option value="08:00">08:00</option>
+              <option value="08:30">08:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="19:00">19:00</option>
+            </select>
+          </div>
+
+          <!-- Personen -->
+          <div class="form-field full">
+            <label for="res-persons"><span lang="de">Anzahl Personen *</span><span lang="it">Numero di persone *</span></label>
+            <select id="res-persons" name="personen" required>
+              <option value="" disabled selected>
+                <span lang="de">Bitte wählen</span><span lang="it">Seleziona</span>
+              </option>
+              <option value="1">1 Person</option>
+              <option value="2">2 Personen</option>
+              <option value="3">3 Personen</option>
+              <option value="4">4 Personen</option>
+              <option value="5">5 Personen</option>
+              <option value="6">6 Personen</option>
+              <option value="7">7 Personen</option>
+              <option value="8">8 Personen</option>
+              <option value="9">9 Personen</option>
+              <option value="10">10 Personen</option>
+              <option value="10+">Mehr als 10 — bitte kurz anrufen</option>
+            </select>
+          </div>
+
+          <!-- Nachricht -->
+          <div class="form-field full">
+            <label for="res-message">
+              <span lang="de">Nachricht</span><span lang="it">Messaggio</span>
+            </label>
+            <textarea id="res-message" name="nachricht"
+              placeholder="Besondere Wünsche, Allergien, Anlass …"></textarea>
+          </div>
+
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span lang="de">Reservierung anfragen</span><span lang="it">Invia richiesta</span>
+          </button>
+        </div>
+        <p class="form-note">
+          <span lang="de">* Pflichtfelder. Keine verbindliche Buchung — wir bestätigen per Telefon oder E-Mail.</span>
+          <span lang="it">* Campi obbligatori. Non è una prenotazione vincolante — confermiamo per telefono o email.</span>
+        </p>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -1055,6 +1126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <ul>
         <li><a href="tel:+393762800929">+39 376 280 0929</a></li>
         <li><a href="mailto:info@rafenstein.it">info@rafenstein.it</a></li>
+        <li><a href="#reservieren"><span lang="de">Tisch reservieren</span><span lang="it">Prenota un tavolo</span></a></li>
         <li><a href="https://www.instagram.com/bistrovicino" target="_blank" rel="noopener">Instagram · @bistrovicino</a></li>
       </ul>
     </div>
@@ -1086,8 +1158,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     filterButtons.forEach(b => b.classList.toggle('on', b.dataset.filter === f));
   }
   filterButtons.forEach(b => b.addEventListener('click', () => setFilter(b.dataset.filter)));
-
-  // Scroll to menu and apply filter when editorial links are clicked
   document.querySelectorAll('a[data-filter]').forEach(a => {
     a.addEventListener('click', () => setFilter(a.dataset.filter));
   });
@@ -1095,23 +1165,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // ─── Open / Closed status + highlight today ───
   function updateStatus(){
     const now = new Date();
-    const dow = (now.getDay() + 6) % 7; // Mon = 0
+    const dow = (now.getDay() + 6) % 7;
     const h = now.getHours() + now.getMinutes()/60;
     const open = dow < 5 && h >= 7 && h < 19;
-
     const pill = document.getElementById('statusPill');
     pill.classList.toggle('open', open);
     const txt = pill.querySelector('.status-text');
     txt.innerHTML = open
       ? '<span lang="de">Jetzt geöffnet</span><span lang="it">Adesso aperto</span>'
       : '<span lang="de">Geschlossen</span><span lang="it">Chiuso</span>';
-
     document.querySelectorAll('#hoursGrid [data-day]').forEach(el => {
       el.classList.toggle('now', Number(el.dataset.day) === dow);
     });
   }
   updateStatus();
   setInterval(updateStatus, 60 * 1000);
+
+  // ─── Set min date for reservation (today) ───
+  const dateInput = document.getElementById('res-date');
+  if(dateInput){
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  }
+
+  // ─── Reservation form — AJAX submit via Formspree ───
+  const form = document.getElementById('reserveForm');
+  const successDiv = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if(form){
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = document.documentElement.lang === 'it'
+        ? 'Invio in corso…'
+        : 'Wird gesendet…';
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if(res.ok){
+          form.style.display = 'none';
+          successDiv.style.display = 'block';
+          // GTM event
+          if(window.dataLayer){
+            window.dataLayer.push({ event: 'reservation_submitted' });
+          }
+        } else {
+          throw new Error('Server error');
+        }
+      } catch(err) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = document.documentElement.lang === 'it'
+          ? 'Invia richiesta'
+          : 'Reservierung anfragen';
+        alert(document.documentElement.lang === 'it'
+          ? 'Qualcosa è andato storto. Riprova o chiamaci.'
+          : 'Etwas hat nicht geklappt. Bitte erneut versuchen oder anrufen.');
+      }
+    });
+  }
 </script>
 
 </body>
