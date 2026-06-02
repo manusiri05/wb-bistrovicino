@@ -15,8 +15,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Bistro Vicino — Bozen · Waltherpark</title>
   <meta name="description" content="Bistro Vicino am Waltherpark in Bozen. Frühstück, Pinzeria, Centrifughe und Aperitivi. Täglich 07:00–19:00.">
 
-  <link rel="icon" href="favicon_vicino.jpg" type="image/jpeg">
-  <link rel="apple-touch-icon" href="favicon_vicino.jpg">
+  <link rel="icon" href="https://raw.githubusercontent.com/manusiri05/wb-bistrovicino/main/assets/favicon_vicino.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/manusiri05/wb-bistrovicino/main/assets/favicon_vicino.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -91,13 +91,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ── Compact section sliders (unterhalb Frühstück / Pinsa) ── */
     .section-slider{padding:0 0 80px}
+    /* Slider auf 70% Breite zentriert */
+    .section-slider .img-slider{max-width:70%;margin:0 auto}
     .img-slider{position:relative;overflow:hidden;border-radius:2px;user-select:none}
     .img-slider .slides{display:flex;transition:transform .48s cubic-bezier(.4,0,.2,1)}
     .img-slider .slide{min-width:100%;flex-shrink:0}
-    /* Wide banner slider — 16:5 = flach und kompakt */
-    .img-slider .slide img{width:100%;height:300px;object-fit:cover;display:block;border-radius:2px}
-    /* Centrifughe Portrait-Slider in der Sektion — 4:3 */
-    .img-slider.centrifughe-slider .slide img{height:380px;aspect-ratio:auto}
+    /* Höhe 420px (300 × 2 × 0.7), Breite folgt dem 70%-Container */
+    .img-slider .slide img{width:100%;height:420px;object-fit:cover;display:block;border-radius:2px}
+    /* Centrifughe Slider: quadratisch (Bilder sind quadratisch) */
+    .img-slider.centrifughe-slider .slide img{height:auto;aspect-ratio:1/1;width:100%}
     .img-slider .s-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.88);border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .2s;font-size:20px;padding:0;line-height:1}
     .img-slider .s-btn:hover{background:#fff}
     .img-slider .s-btn.prev{left:12px}
@@ -243,8 +245,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .form-grid{grid-template-columns:1fr}
       section.reservation .res-info{grid-template-columns:1fr 1fr}
       .gallery-grid{grid-template-columns:repeat(3,1fr)}
-      .img-slider .slide img{height:220px}
-      .img-slider.centrifughe-slider .slide img{height:280px}
+      .section-slider .img-slider{max-width:100%}
+      .img-slider .slide img{height:260px}
+      .img-slider.centrifughe-slider .slide img{aspect-ratio:1/1;height:auto}
     }
     @media (max-width:600px){
       .gallery-grid{grid-template-columns:repeat(2,1fr)}
@@ -607,25 +610,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="location-links">
         <a class="link-arrow" href="https://maps.google.com/?q=Piazza+Walther+Bolzano" target="_blank" rel="noopener">Google Maps ↗</a>
         <a class="link-arrow" href="tel:+393762800929">+39 376 280 0929</a>
-        <a class="link-arrow" href="mailto:info@rafenstein.it">info@rafenstein.it</a>
+        <a class="link-arrow" href="mailto:info@bistrovicino.it">info@bistrovicino.it</a>
       </div>
     </div>
     <div class="map">
-      <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(20,19,15,.04)" stroke-width="1"/></pattern></defs>
-        <rect width="600" height="460" fill="#f5f3ee"/><rect width="600" height="460" fill="url(#grid)"/>
-        <g stroke="#e0dccc" stroke-width="34" stroke-linecap="round" fill="none"><path d="M -20 110 Q 200 130 620 100"/><path d="M -20 360 Q 280 380 620 330"/><path d="M 120 -20 L 90 480"/><path d="M 470 -20 L 500 480"/><path d="M -20 230 L 620 240"/></g>
-        <g stroke="#fff" stroke-width="1.2" stroke-dasharray="6 6" fill="none"><path d="M -20 110 Q 200 130 620 100"/><path d="M -20 360 Q 280 380 620 330"/><path d="M 120 -20 L 90 480"/><path d="M 470 -20 L 500 480"/></g>
-        <rect x="200" y="155" width="180" height="120" rx="6" fill="#cfd7c0"/>
-        <g fill="#a5b48a" opacity="0.7"><circle cx="225" cy="180" r="10"/><circle cx="255" cy="195" r="12"/><circle cx="290" cy="175" r="11"/><circle cx="330" cy="195" r="13"/><circle cx="360" cy="180" r="10"/><circle cx="240" cy="240" r="11"/><circle cx="290" cy="245" r="14"/><circle cx="340" cy="240" r="12"/></g>
-        <text x="290" y="220" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" letter-spacing="1.4" fill="#5d6b48" font-weight="500">WALTHERPARK</text>
-        <rect x="395" y="180" width="60" height="48" fill="#14130f"/>
-        <g fill="#e6e2d8"><rect x="20" y="50" width="80" height="55"/><rect x="20" y="155" width="80" height="65"/><rect x="20" y="265" width="80" height="80"/><rect x="510" y="40" width="70" height="55"/><rect x="510" y="150" width="70" height="60"/><rect x="510" y="265" width="70" height="55"/><rect x="510" y="365" width="70" height="50"/><rect x="155" y="50" width="65" height="45"/><rect x="240" y="40" width="100" height="55"/><rect x="360" y="50" width="80" height="45"/><rect x="155" y="290" width="80" height="55"/><rect x="260" y="295" width="90" height="50"/><rect x="380" y="290" width="80" height="55"/><rect x="155" y="385" width="90" height="55"/><rect x="280" y="395" width="80" height="50"/><rect x="395" y="385" width="80" height="55"/></g>
-        <text x="290" y="120" text-anchor="middle" font-family="Instrument Serif, serif" font-size="16" font-style="italic" fill="#75726a">Piazza Walther</text>
-        <g transform="translate(425,204)"><circle r="22" fill="#14130f" opacity="0.12"/><circle r="14" fill="#14130f"/><circle r="4" fill="#fff"/></g>
-        <text x="425" y="170" text-anchor="middle" font-family="Instrument Serif, serif" font-style="italic" font-size="18" fill="#14130f">Vicino</text>
-        <text x="60" y="430" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="1.2" fill="#a8a496">→ STAZIONE / BHF</text>
-      </svg>
+      <img src="vicino_location.png" alt="Bistro Vicino – Standort am Waltherpark Bozen" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:2px">
     </div>
 
     <!-- Galerie -->
@@ -673,7 +662,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="ri-item"><div class="ri-lbl">Öffnungszeiten</div><div class="ri-val">Täglich</div></div>
         <div class="ri-item"><div class="ri-lbl">Täglich</div><div class="ri-val">07 – 19</div></div>
         <div class="ri-item"><div class="ri-lbl">Telefon</div><div class="ri-val"><a href="tel:+393762800929" style="text-decoration:none">+39 376 280 0929</a></div></div>
-        <div class="ri-item"><div class="ri-lbl">E-Mail</div><div class="ri-val"><a href="mailto:info@rafenstein.it" style="text-decoration:none;font-size:16px">info@rafenstein.it</a></div></div>
+        <div class="ri-item"><div class="ri-lbl">E-Mail</div><div class="ri-val"><a href="mailto:info@bistrovicino.it" style="text-decoration:none;font-size:16px">info@bistrovicino.it</a></div></div>
       </div>
     </div>
     <div class="res-form-wrap">
@@ -738,7 +727,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <h5>Kontakt</h5>
       <ul>
         <li><a href="tel:+393762800929">+39 376 280 0929</a></li>
-        <li><a href="mailto:info@rafenstein.it">info@rafenstein.it</a></li>
+        <li><a href="mailto:info@bistrovicino.it">info@bistrovicino.it</a></li>
         <li><a href="#reservieren">Tisch reservieren</a></li>
         <li><a href="https://www.instagram.com/bistrovicino" target="_blank" rel="noopener">Instagram · @bistrovicino</a></li>
       </ul>
